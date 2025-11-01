@@ -11,16 +11,18 @@ namespace TaskManager_Domain.Domain.Entites
         public int LayerID { get; set; }
 
         public int ProjectID {  get; set; }
-        public Project? Project { get; set; }
+        public virtual Project? Project { get; set; }
 
         public string? LayerName { get; set; }
 
-        public Layer(int layerID, int projectID, Project? project, string? layerName)
+        public virtual List<TaskManager_Domain.Domain.Entites.Task> Tasks { get; set; } = null!;
+        public Layer(int layerID, int projectID, Project? project, string? layerName, List<Task> tasks)
         {
             LayerID = layerID;
             ProjectID = projectID;
             Project = project;
             LayerName = layerName;
+            Tasks = tasks;
         }
 
         public Layer(int layerID, int projectID, string? layerName)

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskManager_Domain.Domain.Enums;
 
-namespace TaskManager_Domain.Domain.Entites.FilterEntities
+namespace TaskManager_Domain.Domain.Entites.FilterAndSort
 {
     public class TaskFilterAndSort
     {

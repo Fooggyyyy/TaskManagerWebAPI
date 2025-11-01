@@ -11,15 +11,15 @@ namespace TaskManager_Domain.Domain.Entites
         public int NotificationID { get; set; }
 
         public int TaskID { get; set; }
-        public Task? Task { get; set; }
+        public virtual TaskManager_Domain.Domain.Entites.Task? Task { get; set; }
 
         public int UserID { get; set; }
-        public User? User { get; set; }
+        public virtual User? User { get; set; }
 
         public string? NotificationName { get; set; }
         public string? NotificationDescription { get; set; }
 
-        public Notification(int notificationID, int taskID, Task? task, int userID,
+        public Notification(int notificationID, int taskID, TaskManager_Domain.Domain.Entites.Task? task, int userID,
             User? user, string? notificationName, string? notificationDescription)
         {
             NotificationID = notificationID;

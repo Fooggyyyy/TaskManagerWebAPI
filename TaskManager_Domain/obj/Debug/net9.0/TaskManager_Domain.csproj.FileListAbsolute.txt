@@ -1,0 +1,12 @@
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Domain\bin\Debug\net9.0\TaskManager_Domain.deps.json
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Domain\bin\Debug\net9.0\TaskManager_Domain.dll
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Domain\bin\Debug\net9.0\TaskManager_Domain.pdb
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Domain\obj\Debug\net9.0\TaskManager_Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Domain\obj\Debug\net9.0\TaskManager_Domain.AssemblyInfoInputs.cache
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Domain\obj\Debug\net9.0\TaskManager_Domain.AssemblyInfo.cs
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Domain\obj\Debug\net9.0\TaskManager_Domain.csproj.CoreCompileInputs.cache
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Domain\obj\Debug\net9.0\TaskManager_Domain.sourcelink.json
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Domain\obj\Debug\net9.0\TaskManager_Domain.dll
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Domain\obj\Debug\net9.0\refint\TaskManager_Domain.dll
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Domain\obj\Debug\net9.0\TaskManager_Domain.pdb
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Domain\obj\Debug\net9.0\ref\TaskManager_Domain.dll

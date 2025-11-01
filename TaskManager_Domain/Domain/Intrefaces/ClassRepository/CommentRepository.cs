@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskManager_Domain.Domain.Entites;
 
-namespace TaskManager_Domain.Domain.Intrefaces
+namespace TaskManager_Domain.Domain.Intrefaces.ClassRepository
 {
     public interface ICommentRepository : IBaseRepository<Comment>
     {
+        System.Threading.Tasks.Task Update(int OldID, string CommmentBody);
     }
 }

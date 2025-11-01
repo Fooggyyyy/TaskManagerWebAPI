@@ -11,15 +11,15 @@ namespace TaskManager_Domain.Domain.Entites
         public int CommentID { get; set; }
         
         public int TaskID { get; set; }
-        public Task? Task { get; set; }
+        public virtual TaskManager_Domain.Domain.Entites.Task? Task { get; set; }
 
         public int UserID { get; set; }
-        public User? User { get; set; }
+        public virtual User? User { get; set; }
 
         public string? CommentBody {  get; set; }
         public DateOnly ReleaseDate { get; set; }
 
-        public Comment(int commentID, int taskID, Task? task,
+        public Comment(int commentID, int taskID, TaskManager_Domain.Domain.Entites.Task? task,
             int userID, User? user, string? commentBody, DateOnly releaseDate)
         {
             CommentID = commentID;

@@ -1,0 +1,16 @@
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Infastructure\bin\Debug\net9.0\TaskManager_Infastructure.deps.json
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Infastructure\bin\Debug\net9.0\TaskManager_Infastructure.dll
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Infastructure\bin\Debug\net9.0\TaskManager_Infastructure.pdb
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Infastructure\bin\Debug\net9.0\TaskManager_Domain.dll
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Infastructure\bin\Debug\net9.0\TaskManager_Domain.pdb
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Infastructure\obj\Debug\net9.0\TaskManager_Infastructure.csproj.AssemblyReference.cache
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Infastructure\obj\Debug\net9.0\TaskManager_Infastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Infastructure\obj\Debug\net9.0\TaskManager_Infastructure.AssemblyInfoInputs.cache
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Infastructure\obj\Debug\net9.0\TaskManager_Infastructure.AssemblyInfo.cs
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Infastructure\obj\Debug\net9.0\TaskManager_Infastructure.csproj.CoreCompileInputs.cache
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Infastructure\obj\Debug\net9.0\TaskManager_Infastructure.sourcelink.json
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Infastructure\obj\Debug\net9.0\TaskMana.1451A200.Up2Date
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Infastructure\obj\Debug\net9.0\TaskManager_Infastructure.dll
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Infastructure\obj\Debug\net9.0\refint\TaskManager_Infastructure.dll
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Infastructure\obj\Debug\net9.0\TaskManager_Infastructure.pdb
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManager_Infastructure\obj\Debug\net9.0\ref\TaskManager_Infastructure.dll
