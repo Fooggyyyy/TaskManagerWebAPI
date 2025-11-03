@@ -11,6 +11,7 @@ namespace TaskManager_Domain.Domain.Intrefaces.ClassRepository
 {
     public interface IProjectRepository : IBaseRepository<Project>
     {
-        System.Threading.Tasks.Task Update(int OldID, string? ProjectName, string? ProjectDescription, Status? status);
+        System.Threading.Tasks.Task Update(int OldID, string? ProjectName, string? ProjectDescription, Status? status, CancellationToken cancellationToken);
+        Task<List<Project>> Filter(string? ProjectName, Status? ProjectStatus, CancellationToken cancellationToken);
     }
 }
