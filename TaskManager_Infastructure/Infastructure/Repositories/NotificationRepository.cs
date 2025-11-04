@@ -19,39 +19,66 @@ namespace TaskManager_Infastructure.Infastructure.Repositories
             await dbcontext.SaveChangesAsync(cancellationToken);
         }
 
-        public System.Threading.Tasks.Task DeleteAll(CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task DeleteAll(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await dbcontext.Notifications.ExecuteDeleteAsync(cancellationToken);
+            await dbcontext.SaveChangesAsync(cancellationToken);
         }
 
-        public System.Threading.Tasks.Task DeleteById(int id, CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task DeleteById(int id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await dbcontext.Notifications.Where(x => x.NotificationID == id).ExecuteDeleteAsync(cancellationToken);
+            await dbcontext.SaveChangesAsync(cancellationToken);
         }
 
-        public Task<List<Notification>> Filter(string? NotificationName, CancellationToken cancellationToken)
+        public async Task<List<Notification>> Filter(string? NotificationName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            if (NotificationName == null)
+                return await dbcontext.Notifications.AsNoTracking().ToListAsync(cancellationToken);
+            return await dbcontext.Notifications.Where(x => x.NotificationName == NotificationName).AsNoTracking().ToListAsync(cancellationToken);
         }
 
-        public Task<Notification> FindById(int id, CancellationToken cancellationToken)
+        public async Task<Notification?> FindById(int id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await dbcontext.Notifications.Where(x => x.NotificationID == id).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
         }
 
-        public Task<List<Notification>> GetAll(CancellationToken cancellationToken)
+        public async Task<List<Notification>> GetAll(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await dbcontext.Notifications.AsNoTracking().ToListAsync(cancellationToken);
         }
 
-        public System.Threading.Tasks.Task RedirectionToAnotherUser(int OldUserID, int NewUserID, CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task RedirectionToAnotherUser(int NotificationID, int OldUserID, int NewUserID, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            Notification? notification = await dbcontext.Notifications
+                .Where(x => x.NotificationID == NotificationID && x.UserID == OldUserID).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
+
+            if(notification != null)
+            {
+                notification.UserID = NewUserID;
+                dbcontext.Notifications.Update(notification);   
+            }
+
+            await dbcontext.SaveChangesAsync(cancellationToken);
         }
 
-        public System.Threading.Tasks.Task Update(int OldID, string? NotificationName, string? NotificationDescriptionm, CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task Update(int OldID, string? NotificationName, string? NotificationDescription, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            Notification? notification = await dbcontext.Notifications
+               .Where(x => x.NotificationID == OldID).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
+
+            if (notification != null)
+            {
+                if (NotificationName != null)
+                    notification.NotificationName = NotificationName;
+
+                if (NotificationDescription != null)
+                    notification.NotificationDescription = NotificationDescription;
+
+                dbcontext.Notifications.Update(notification);
+
+                await dbcontext.SaveChangesAsync(cancellationToken);
+            }
         }
     }
 }

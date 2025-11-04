@@ -10,8 +10,8 @@ namespace TaskManager_Domain.Domain.Intrefaces.ClassRepository
 {
     public interface INotificationRepository : IBaseRepository<Notification>
     {
-        System.Threading.Tasks.Task Update(int OldID, string? NotificationName, string? NotificationDescriptionm, CancellationToken cancellationToken);
-        System.Threading.Tasks.Task RedirectionToAnotherUser(int OldUserID, int NewUserID, CancellationToken cancellationToken);
+        System.Threading.Tasks.Task Update(int OldID, string? NotificationName, string? NotificationDescription, CancellationToken cancellationToken);
+        System.Threading.Tasks.Task RedirectionToAnotherUser(int NotificationID, int OldUserID, int NewUserID, CancellationToken cancellationToken);
         Task<List<Notification>> Filter(string? NotificationName, CancellationToken cancellationToken);
     }
 }

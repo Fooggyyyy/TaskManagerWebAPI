@@ -39,9 +39,9 @@ namespace TaskManager_Infastructure.Infastructure.Repositories
             return await dbcontext.Comments.Where(x => x.ReleaseDate >= CommentReleaseDateStart).AsNoTracking().ToListAsync(cancellationToken);
         }
 
-        public async Task<Comment> FindById(int id, CancellationToken cancellationToken)
+        public async Task<Comment?> FindById(int id, CancellationToken cancellationToken)
         {
-            return await dbcontext.Comments.Where(x => x.CommentID == id).AsNoTracking().FirstAsync(cancellationToken);
+            return await dbcontext.Comments.Where(x => x.CommentID == id).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
         }
 
         public async Task<List<Comment>> GetAll(CancellationToken cancellationToken)
@@ -51,12 +51,16 @@ namespace TaskManager_Infastructure.Infastructure.Repositories
 
         public async System.Threading.Tasks.Task Update(int OldID, string CommmentBody, CancellationToken cancellationToken)
         {
-            var comment = await dbcontext.Comments.FirstAsync(c => c.CommentID == OldID, cancellationToken);
+            Comment? comment = await dbcontext.Comments.FirstOrDefaultAsync(c => c.CommentID == OldID, cancellationToken);
 
-            comment.CommentBody = CommmentBody;
-            dbcontext.Comments.Update(comment);
+            if(comment != null)
+            {
+                if(CommmentBody != null)
+                    comment.CommentBody = CommmentBody;
+                dbcontext.Comments.Update(comment);
 
-            await dbcontext.SaveChangesAsync(cancellationToken);
+                await dbcontext.SaveChangesAsync(cancellationToken);
+            }
         }
     }
 }

@@ -20,34 +20,61 @@ namespace TaskManager_Infastructure.Infastructure.Repositories
             await dbcontext.SaveChangesAsync(cancellationToken);
         }
 
-        public System.Threading.Tasks.Task DeleteAll(CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task DeleteAll(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await dbcontext.Projects.ExecuteDeleteAsync(cancellationToken);
+            await dbcontext.SaveChangesAsync(cancellationToken);
         }
 
-        public System.Threading.Tasks.Task DeleteById(int id, CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task DeleteById(int id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await dbcontext.Projects.Where(x => x.ProjectID == id).ExecuteDeleteAsync(cancellationToken);
+            await dbcontext.SaveChangesAsync(cancellationToken);
         }
 
-        public Task<List<Project>> Filter(string? ProjectName, Status? ProjectStatus, CancellationToken cancellationToken)
+        public async Task<List<Project>> Filter(string? ProjectName, Status? ProjectStatus, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var query = dbcontext.Projects.AsNoTracking();
+
+            if (ProjectName != null)
+                query = query.Where(x => x.ProjectName == ProjectName);
+
+            if (ProjectStatus != null)
+                query = query.Where(x => x.Status == ProjectStatus);
+
+            var allProjects = await query.ToListAsync(cancellationToken);
+            
+            return allProjects;
         }
 
-        public Task<Project> FindById(int id, CancellationToken cancellationToken)
+        public async Task<Project?> FindById(int id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await dbcontext.Projects.Where(x => x.ProjectID == id).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
         }
 
-        public Task<List<Project>> GetAll(CancellationToken cancellationToken)
+        public async Task<List<Project>> GetAll(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await dbcontext.Projects.AsNoTracking().ToListAsync(cancellationToken);
         }
 
-        public System.Threading.Tasks.Task Update(int OldID, string? ProjectName, string? ProjectDescription, Status? status, CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task Update(int OldID, string? ProjectName, string? ProjectDescription, Status? status, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            Project? project = await dbcontext.Projects.Where(x => x.ProjectID == OldID).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
+
+            if (project != null)
+            {
+                if (ProjectName != null)
+                    project.ProjectName = ProjectName;
+
+                if (ProjectDescription != null)
+                    project.Description = ProjectDescription;
+
+                if (status != null)
+                    project.Status = status.Value;
+
+                dbcontext.Projects.Update(project);
+                await dbcontext.SaveChangesAsync(cancellationToken);
+            }
         }
     }
 }

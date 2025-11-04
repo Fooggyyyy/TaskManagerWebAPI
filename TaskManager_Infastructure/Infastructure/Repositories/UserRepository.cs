@@ -20,39 +20,72 @@ namespace TaskManager_Infastructure.Infastructure.Repositories
             await dbcontext.SaveChangesAsync(cancellationToken);
         }
 
-        public System.Threading.Tasks.Task DeleteAll(CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task DeleteAll(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await dbcontext.Users.ExecuteDeleteAsync(cancellationToken);
+            await dbcontext.SaveChangesAsync(cancellationToken);
         }
 
-        public System.Threading.Tasks.Task DeleteById(int id, CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task DeleteById(int id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await dbcontext.Users.Where(x => x.UserID == id).ExecuteDeleteAsync(cancellationToken);
+            await dbcontext.SaveChangesAsync(cancellationToken);
         }
 
-        public Task<List<User>> Filter(string? UserFullName, string? UserEmail, Role? UserRole, CancellationToken cancellationToken)
+        public async Task<List<User>> Filter(string? UserFullName, string? UserEmail, Role? UserRole, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var query = dbcontext.Users.AsNoTracking();
+
+            if(UserFullName != null)
+                query = query.Where(x => x.FullName == UserFullName);
+            if(UserEmail != null)
+                query = query.Where(x => x.Email == UserEmail);
+            if(UserRole != null)
+                query = query.Where(x => x.Role == UserRole);
+
+            var Users = await query.ToListAsync(cancellationToken);
+
+            return Users;
         }
 
-        public Task<User> FindById(int id, CancellationToken cancellationToken)
+        public async Task<User?> FindById(int id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await dbcontext.Users.Where(x => x.UserID == id).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
         }
 
-        public Task<List<User>> GetAll(CancellationToken cancellationToken)
+        public async Task<List<User>> GetAll(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await dbcontext.Users.AsNoTracking().ToListAsync(cancellationToken);
         }
 
-        public Task<string> ResetPassword(int ID, string OldPassword, string NewPassword, CancellationToken cancellationToken)
+        public async Task<string> ResetPassword(int ID, string OldPassword, string NewPassword, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var user = await dbcontext.Users.Where(x => x.UserID == ID && x.Password == OldPassword).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
+
+            if(user != null)
+            {
+                user.Password = NewPassword;
+                return NewPassword;
+            }
+
+            return OldPassword;
         }
 
-        public System.Threading.Tasks.Task Update(int ID, string? FullName, string? Email, Role? Role, CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task Update(int ID, string? FullName, string? Email, Role? Role, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var user = await dbcontext.Users.Where(x => x.UserID == ID).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
+
+            if(user != null)
+            {
+                if(FullName !=  null) 
+                    user.FullName = FullName;
+                if(Email != null) 
+                    user.Email = Email;
+                if (Role != null)
+                    user.Role = Role.Value;
+
+                await dbcontext.SaveChangesAsync(cancellationToken);
+            }
         }
     }
 }

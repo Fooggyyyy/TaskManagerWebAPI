@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManager_Domain.Domain.Entites;
@@ -31,24 +32,35 @@ namespace TaskManager_Infastructure.Infastructure.Repositories
             await dbcontext.SaveChangesAsync(cancellationToken);
         }
 
-        public Task<List<Layer>> Filter(string? LayerName, CancellationToken cancellationToken)
+        public async Task<List<Layer>> Filter(string? LayerName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            if (LayerName == null)
+                return await dbcontext.Layers.AsNoTracking().ToListAsync(cancellationToken);
+            return await dbcontext.Layers.Where(x => x.LayerName == LayerName).AsNoTracking().ToListAsync(cancellationToken);
         }
 
-        public Task<Layer> FindById(int id, CancellationToken cancellationToken)
+        public async Task<Layer?> FindById(int id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await dbcontext.Layers.Where(x => x.LayerID == id).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
         }
 
-        public Task<List<Layer>> GetAll(CancellationToken cancellationToken)
+        public async Task<List<Layer>> GetAll(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await dbcontext.Layers.AsNoTracking().ToListAsync(cancellationToken);
         }
 
-        public System.Threading.Tasks.Task Update(int OldID, string LayerName, CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task Update(int OldID, string LayerName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            Layer? layer = await dbcontext.Layers.Where(x => x.LayerID == OldID).AsNoTracking().FirstAsync(cancellationToken);
+
+            if(layer != null)
+            {
+                if(LayerName != null)
+                    layer.LayerName = LayerName;
+                dbcontext.Layers.Update(layer);
+
+                await dbcontext.SaveChangesAsync(cancellationToken);
+            }
         }
     }
 }
