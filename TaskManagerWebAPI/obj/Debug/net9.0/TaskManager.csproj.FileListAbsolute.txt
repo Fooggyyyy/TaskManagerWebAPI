@@ -87,3 +87,7 @@ C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManagerWebAPI\obj\Deb
 C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManagerWebAPI\obj\Debug\net9.0\TaskManager.pdb
 C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManagerWebAPI\obj\Debug\net9.0\TaskManager.genruntimeconfig.cache
 C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManagerWebAPI\obj\Debug\net9.0\ref\TaskManager.dll
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManagerWebAPI\bin\Debug\net9.0\AutoMapper.dll
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManagerWebAPI\bin\Debug\net9.0\FluentValidation.dll
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManagerWebAPI\bin\Debug\net9.0\MediatR.dll
+C:\Users\useer-b9497e4c\source\repos\TaskManagerWebAPI\TaskManagerWebAPI\bin\Debug\net9.0\MediatR.Contracts.dll

@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Application\Common\HashHelper\" />
     <Folder Include="Application\Events\Commands\Commands\CommentCommands\" />
     <Folder Include="Application\Events\Commands\Commands\LayerCommands\" />
     <Folder Include="Application\Events\Commands\Commands\NotificationCommands\" />

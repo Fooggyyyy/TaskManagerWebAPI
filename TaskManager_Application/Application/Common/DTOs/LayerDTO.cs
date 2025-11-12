@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManager_Application.Application.Common.DTOs
 {
-    public class LayersDTO
+    public class LayerDTO 
     {
     }
 }
