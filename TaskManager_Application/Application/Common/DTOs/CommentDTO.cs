@@ -8,5 +8,19 @@ namespace TaskManager_Application.Application.Common.DTOs
 {
     public class CommentDTO
     {
+        public int CommentID { get; set; }
+        public string? CommentBody { get; set; }
+        public DateOnly ReleaseDate { get; set; }
+
+        public CommentDTO()
+        {
+
+        }
+        public CommentDTO(int commentID, string? commentBody, DateOnly releaseDate)
+        {
+            CommentID = commentID;
+            CommentBody = commentBody;
+            ReleaseDate = releaseDate;
+        }
     }
 }

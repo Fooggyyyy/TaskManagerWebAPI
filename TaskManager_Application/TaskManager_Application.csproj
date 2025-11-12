@@ -32,7 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Common\HashHelper\" />
     <Folder Include="Application\Events\Commands\Commands\CommentCommands\" />
     <Folder Include="Application\Events\Commands\Commands\LayerCommands\" />
     <Folder Include="Application\Events\Commands\Commands\NotificationCommands\" />
@@ -61,6 +60,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="15.1.0" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="FluentValidation" Version="12.1.0" />
     <PackageReference Include="MediatR" Version="13.1.0" />
   </ItemGroup>

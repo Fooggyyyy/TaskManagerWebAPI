@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Bpvx0v01cWI=",
+  "dgSpecHash": "qx+zGlxWAtE=",
   "success": true,
   "projectFilePath": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManagerWebAPI\\TaskManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\useer-b9497e4c\\.nuget\\packages\\automapper\\15.1.0\\automapper.15.1.0.nupkg.sha512",
     "C:\\Users\\useer-b9497e4c\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\useer-b9497e4c\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
+    "C:\\Users\\useer-b9497e4c\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\useer-b9497e4c\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\useer-b9497e4c\\.nuget\\packages\\fluentvalidation\\12.1.0\\fluentvalidation.12.1.0.nupkg.sha512",
     "C:\\Users\\useer-b9497e4c\\.nuget\\packages\\mediatr\\13.1.0\\mediatr.13.1.0.nupkg.sha512",

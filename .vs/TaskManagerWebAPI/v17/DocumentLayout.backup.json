@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|c:\\users\\useer-b9497e4c\\source\\repos\\taskmanagerwebapi\\taskmanager_application\\application\\common\\validations\\uservalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|solutionrelative:taskmanager_application\\application\\common\\validations\\uservalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|c:\\users\\useer-b9497e4c\\source\\repos\\taskmanagerwebapi\\taskmanager_application\\application\\common\\validations\\taskvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|solutionrelative:taskmanager_application\\application\\common\\validations\\taskvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,16 +15,16 @@
       "RelativeMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|solutionrelative:taskmanager_application\\application\\common\\validations\\projectvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|c:\\users\\useer-b9497e4c\\source\\repos\\taskmanagerwebapi\\taskmanager_application\\application\\common\\validations\\notificationvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|solutionrelative:taskmanager_application\\application\\common\\validations\\notificationvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|c:\\users\\useer-b9497e4c\\source\\repos\\taskmanagerwebapi\\taskmanager_application\\application\\common\\validations\\commentvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|solutionrelative:taskmanager_application\\application\\common\\validations\\commentvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|c:\\users\\useer-b9497e4c\\source\\repos\\taskmanagerwebapi\\taskmanager_application\\application\\common\\validations\\layervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|solutionrelative:taskmanager_application\\application\\common\\validations\\layervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|c:\\users\\useer-b9497e4c\\source\\repos\\taskmanagerwebapi\\taskmanager_application\\application\\common\\validations\\commentvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|solutionrelative:taskmanager_application\\application\\common\\validations\\commentvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|c:\\users\\useer-b9497e4c\\source\\repos\\taskmanagerwebapi\\taskmanager_application\\application\\common\\validations\\notificationvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|solutionrelative:taskmanager_application\\application\\common\\validations\\notificationvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|c:\\users\\useer-b9497e4c\\source\\repos\\taskmanagerwebapi\\taskmanager_application\\application\\common\\dtos\\commentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -41,10 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{6C575A78-00E1-40AA-9B43-BF4F68536D6A}|TaskManager_Infastructure\\TaskManager_Infastructure.csproj|c:\\users\\useer-b9497e4c\\source\\repos\\taskmanagerwebapi\\taskmanager_infastructure\\infastructure\\repositories\\commentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6C575A78-00E1-40AA-9B43-BF4F68536D6A}|TaskManager_Infastructure\\TaskManager_Infastructure.csproj|solutionrelative:taskmanager_infastructure\\infastructure\\repositories\\commentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|c:\\users\\useer-b9497e4c\\source\\repos\\taskmanagerwebapi\\taskmanager_application\\application\\common\\validations\\uservalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E27A018F-284F-4521-9C15-33F02A1F18C2}|TaskManager_Application\\TaskManager_Application.csproj|solutionrelative:taskmanager_application\\application\\common\\validations\\uservalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{93F83FF1-4D4A-4619-B30F-14D3B4902FB4}|TaskManagerWebAPI\\TaskManager.csproj|c:\\users\\useer-b9497e4c\\source\\repos\\taskmanagerwebapi\\taskmanagerwebapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -230,7 +230,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "CommentDTO.cs",
               "DocumentMoniker": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\DTOs\\CommentDTO.cs",
               "RelativeDocumentMoniker": "TaskManager_Application\\Application\\Common\\DTOs\\CommentDTO.cs",
@@ -244,18 +244,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Comment.cs",
-              "DocumentMoniker": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Domain\\Domain\\Entites\\Comment.cs",
-              "RelativeDocumentMoniker": "TaskManager_Domain\\Domain\\Entites\\Comment.cs",
-              "ToolTip": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Domain\\Domain\\Entites\\Comment.cs",
-              "RelativeToolTip": "TaskManager_Domain\\Domain\\Entites\\Comment.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-01T18:06:02.027Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "CommentProfile.cs",
               "DocumentMoniker": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Mapping\\CommentProfile.cs",
               "RelativeDocumentMoniker": "TaskManager_Application\\Application\\Common\\Mapping\\CommentProfile.cs",
@@ -267,7 +255,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "LayerDTO.cs",
               "DocumentMoniker": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\DTOs\\LayerDTO.cs",
               "RelativeDocumentMoniker": "TaskManager_Application\\Application\\Common\\DTOs\\LayerDTO.cs",
@@ -279,12 +267,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "CommentValidator.cs",
               "DocumentMoniker": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\CommentValidator.cs",
               "RelativeDocumentMoniker": "TaskManager_Application\\Application\\Common\\Validations\\CommentValidator.cs",
-              "ToolTip": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\CommentValidator.cs*",
-              "RelativeToolTip": "TaskManager_Application\\Application\\Common\\Validations\\CommentValidator.cs*",
+              "ToolTip": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\CommentValidator.cs",
+              "RelativeToolTip": "TaskManager_Application\\Application\\Common\\Validations\\CommentValidator.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-11T22:57:31.358Z",
@@ -292,12 +280,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "LayerValidator.cs",
               "DocumentMoniker": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\LayerValidator.cs",
               "RelativeDocumentMoniker": "TaskManager_Application\\Application\\Common\\Validations\\LayerValidator.cs",
-              "ToolTip": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\LayerValidator.cs*",
-              "RelativeToolTip": "TaskManager_Application\\Application\\Common\\Validations\\LayerValidator.cs*",
+              "ToolTip": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\LayerValidator.cs",
+              "RelativeToolTip": "TaskManager_Application\\Application\\Common\\Validations\\LayerValidator.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-11T22:57:51.403Z",
@@ -305,12 +293,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "NotificationValidator.cs",
               "DocumentMoniker": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\NotificationValidator.cs",
               "RelativeDocumentMoniker": "TaskManager_Application\\Application\\Common\\Validations\\NotificationValidator.cs",
-              "ToolTip": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\NotificationValidator.cs*",
-              "RelativeToolTip": "TaskManager_Application\\Application\\Common\\Validations\\NotificationValidator.cs*",
+              "ToolTip": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\NotificationValidator.cs",
+              "RelativeToolTip": "TaskManager_Application\\Application\\Common\\Validations\\NotificationValidator.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-11T22:58:08.894Z",
@@ -318,33 +306,58 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ProjectValidator.cs",
               "DocumentMoniker": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\ProjectValidator.cs",
               "RelativeDocumentMoniker": "TaskManager_Application\\Application\\Common\\Validations\\ProjectValidator.cs",
-              "ToolTip": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\ProjectValidator.cs*",
-              "RelativeToolTip": "TaskManager_Application\\Application\\Common\\Validations\\ProjectValidator.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABfAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\ProjectValidator.cs",
+              "RelativeToolTip": "TaskManager_Application\\Application\\Common\\Validations\\ProjectValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-11T22:58:17.739Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "TaskValidator.cs",
               "DocumentMoniker": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\TaskValidator.cs",
               "RelativeDocumentMoniker": "TaskManager_Application\\Application\\Common\\Validations\\TaskValidator.cs",
-              "ToolTip": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\TaskValidator.cs*",
-              "RelativeToolTip": "TaskManager_Application\\Application\\Common\\Validations\\TaskValidator.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABeAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\TaskValidator.cs",
+              "RelativeToolTip": "TaskManager_Application\\Application\\Common\\Validations\\TaskValidator.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAABeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-11T22:58:29.087Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserValidator.cs",
+              "DocumentMoniker": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\UserValidator.cs",
+              "RelativeDocumentMoniker": "TaskManager_Application\\Application\\Common\\Validations\\UserValidator.cs",
+              "ToolTip": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\UserValidator.cs",
+              "RelativeToolTip": "TaskManager_Application\\Application\\Common\\Validations\\UserValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T22:58:39.358Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 9,
+              "Title": "Comment.cs",
+              "DocumentMoniker": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Domain\\Domain\\Entites\\Comment.cs",
+              "RelativeDocumentMoniker": "TaskManager_Domain\\Domain\\Entites\\Comment.cs",
+              "ToolTip": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Domain\\Domain\\Entites\\Comment.cs",
+              "RelativeToolTip": "TaskManager_Domain\\Domain\\Entites\\Comment.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T18:06:02.027Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "CommentRepository.cs",
               "DocumentMoniker": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Infastructure\\Infastructure\\Repositories\\CommentRepository.cs",
               "RelativeDocumentMoniker": "TaskManager_Infastructure\\Infastructure\\Repositories\\CommentRepository.cs",
@@ -353,18 +366,6 @@
               "ViewState": "AgIAACMAAAAAAAAAAAAIwDoAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-01T20:48:18.949Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "UserValidator.cs",
-              "DocumentMoniker": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\UserValidator.cs",
-              "RelativeDocumentMoniker": "TaskManager_Application\\Application\\Common\\Validations\\UserValidator.cs",
-              "ToolTip": "C:\\Users\\useer-b9497e4c\\source\\repos\\TaskManagerWebAPI\\TaskManager_Application\\Application\\Common\\Validations\\UserValidator.cs",
-              "RelativeToolTip": "TaskManager_Application\\Application\\Common\\Validations\\UserValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T22:58:39.358Z"
             },
             {
               "$type": "Document",

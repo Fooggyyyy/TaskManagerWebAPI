@@ -1,4 +1,5 @@
 using FluentValidation;
+using TaskManager_Application.Application.Common.HashHelper;
 using TaskManager_Application.Application.Common.Mapping;
 using TaskManager_Application.Application.Common.Validations;
 using TaskManager_Domain.Domain.Entites;
@@ -34,6 +35,9 @@ builder.Services.AddScoped<IValidator<Notification>, NotificationValidator>();
 builder.Services.AddScoped<IValidator<Project>, ProjectValidator>();
 builder.Services.AddScoped<IValidator<TaskManager_Domain.Domain.Entites.Task>, TaskValidator>();
 builder.Services.AddScoped<IValidator<User>, UserValidator>();
+
+//HashPassword
+builder.Services.AddScoped<IHashPassword, HashPasswordService>();
 
 var app = builder.Build();
 
