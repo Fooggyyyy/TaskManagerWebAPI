@@ -1,13 +1,47 @@
 using FluentValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using TaskManager_Application.Application.Common.HashHelper;
+using TaskManager_Application.Application.Common.JWT.JWTService;
 using TaskManager_Application.Application.Common.Mapping;
 using TaskManager_Application.Application.Common.Validations;
 using TaskManager_Domain.Domain.Entites;
 using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
-using TaskManager_Infastructure.Infastructure.DataBase;
 using TaskManager_Infastructure.Infastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
+var AuthBuilder = builder.Services.AddAuthorizationBuilder();
+var JwtSetting = builder.Configuration.GetSection("jwt");
+var JwtKey = Encoding.UTF8.GetBytes(JwtSetting.Key);
+
+//Authentication
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = JwtSetting["Issuer"],
+        ValidAudience = JwtSetting["Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(JwtKey)
+    };
+});
+
+
+//Authorization
+AuthBuilder.AddPolicy("UserOnly", policy => policy.RequireRole("User"));
+AuthBuilder.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+
+//JWT Service
+builder.Services.AddScoped<IJwtService, JwtService>(); 
 
 //Repositories
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
@@ -39,11 +73,15 @@ builder.Services.AddScoped<IValidator<User>, UserValidator>();
 //HashPassword
 builder.Services.AddScoped<IHashPassword, HashPasswordService>();
 
+//Mapping
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+
 var app = builder.Build();
 
-using(var db = new AppDBContext())
-{
-    db.Database.EnsureCreated();
-}
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
 app.Run();
     

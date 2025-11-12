@@ -58,17 +58,12 @@ namespace TaskManager_Infastructure.Infastructure.Repositories
             return await dbcontext.Users.AsNoTracking().ToListAsync(cancellationToken);
         }
 
-        public async Task<string> ResetPassword(int ID, string OldPassword, string NewPassword, CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task ResetPassword(int ID, string OldPassword, string NewPassword, CancellationToken cancellationToken)
         {
             var user = await dbcontext.Users.Where(x => x.UserID == ID && x.Password == OldPassword).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
 
             if(user != null)
-            {
                 user.Password = NewPassword;
-                return NewPassword;
-            }
-
-            return OldPassword;
         }
 
         public async System.Threading.Tasks.Task Update(int ID, string? FullName, string? Email, Role? Role, CancellationToken cancellationToken)

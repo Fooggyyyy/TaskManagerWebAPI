@@ -32,37 +32,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Events\Commands\Commands\CommentCommands\" />
-    <Folder Include="Application\Events\Commands\Commands\LayerCommands\" />
-    <Folder Include="Application\Events\Commands\Commands\NotificationCommands\" />
-    <Folder Include="Application\Events\Commands\Commands\ProjectCommands\" />
-    <Folder Include="Application\Events\Commands\Commands\TaskCommands\" />
-    <Folder Include="Application\Events\Commands\Commands\UserCommands\" />
-    <Folder Include="Application\Events\Commands\Handlers\CommentHandlers\" />
-    <Folder Include="Application\Events\Commands\Handlers\LayerHandlers\" />
-    <Folder Include="Application\Events\Commands\Handlers\NotificationHandlers\" />
-    <Folder Include="Application\Events\Commands\Handlers\ProjectHandlers\" />
-    <Folder Include="Application\Events\Commands\Handlers\TaskHandlers\" />
-    <Folder Include="Application\Events\Commands\Handlers\UserHandlers\" />
-    <Folder Include="Application\Events\Querys\Handlers\CommentHandlers\" />
-    <Folder Include="Application\Events\Querys\Handlers\LayerHandlers\" />
-    <Folder Include="Application\Events\Querys\Handlers\NotificationHandlers\" />
-    <Folder Include="Application\Events\Querys\Handlers\ProjectHandlers\" />
-    <Folder Include="Application\Events\Querys\Handlers\TaskHandlers\" />
-    <Folder Include="Application\Events\Querys\Handlers\UserHandlers\" />
-    <Folder Include="Application\Events\Querys\Querys\CommentQuerys\" />
-    <Folder Include="Application\Events\Querys\Querys\LayerQuerys\" />
-    <Folder Include="Application\Events\Querys\Querys\NotificationQuerys\" />
-    <Folder Include="Application\Events\Querys\Querys\ProjectQuerys\" />
-    <Folder Include="Application\Events\Querys\Querys\TaskQuerys\" />
-    <Folder Include="Application\Events\Querys\Querys\UserQuerys\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="15.1.0" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="FluentValidation" Version="12.1.0" />
     <PackageReference Include="MediatR" Version="13.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.11" />
   </ItemGroup>
 
 </Project>
