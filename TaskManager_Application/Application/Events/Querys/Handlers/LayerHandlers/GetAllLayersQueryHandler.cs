@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskManager_Application.Application.Events.Querys.Handlers.LayerHandlers
 {
-    public class GetAllLayersQueryHandler
+    public class GetAllLayersQueryHandlerz
     {
     }
 }

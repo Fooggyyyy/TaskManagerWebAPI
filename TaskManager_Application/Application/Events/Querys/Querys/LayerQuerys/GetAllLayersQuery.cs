@@ -1,12 +1,24 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManager_Application.Application.Common.DTOs;
 
 namespace TaskManager_Application.Application.Events.Querys.Querys.LayerQuerys
 {
-    public class GetAllLayersQuery
+    public class GetAllLayersQuery : IRequest<ICollection<LayerDTO>>
     {
+        public int Page { get; set; }
+        public int PageSize { get; set; }
+
+        public GetAllLayersQuery(int page, int pageSize)
+        {
+            Page = page;
+            PageSize = pageSize;
+        }
+
+        public GetAllLayersQuery() { }
     }
 }
