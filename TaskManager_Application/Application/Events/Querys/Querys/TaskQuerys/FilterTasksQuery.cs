@@ -9,7 +9,7 @@ using TaskManager_Domain.Domain.Enums;
 
 namespace TaskManager_Application.Application.Events.Querys.Querys.TaskQuerys
 {
-    public class FilterTasksQuery : IRequest<ICollection<TaskDTO>>
+    public class FilterTaskByIdQuery : IRequest<ICollection<TaskDTO>>
     {
         public string? TaskName { get; set; }
         public Priority TaskPriority { get; set; }
@@ -17,7 +17,7 @@ namespace TaskManager_Application.Application.Events.Querys.Querys.TaskQuerys
         public DateOnly? TaskDataEnd { get; set; }
         public bool IsComplited { get; set; }
 
-        public FilterTasksQuery(string? taskName, Priority taskPriority,
+        public FilterTaskByIdQuery(string? taskName, Priority taskPriority,
             DateOnly? taskDataStart, DateOnly? taskDataEnd, bool isComplited)
         {
             TaskName = taskName;
@@ -27,7 +27,7 @@ namespace TaskManager_Application.Application.Events.Querys.Querys.TaskQuerys
             IsComplited = isComplited;
         }
 
-        public FilterTasksQuery()
+        public FilterTaskByIdQuery()
         {
 
         }

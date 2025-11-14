@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManager_Application.Application.Common.DTOs;
 using TaskManager_Domain.Domain.Entites;
 
 namespace TaskManager_Application.Application.Events.Querys.Querys.UserQuerys
 {
-    public class GetAllUsersQuery : IRequest<ICollection<User>>
+    public class GetAllUsersQuery : IRequest<ICollection<UserDTO>>
     {
         public int Page { get; set; }
         public int PageSize { get; set; }
