@@ -12,13 +12,16 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Querys.Handlers.ProjectHandlers
 {
-#pragma warning disable CS9113
-    public class GetAllProjectsQueryHandler(IProjectRepository ProjectRepository, IMapper Mapper, IValidator Validator)
+    public class GetAllProjectsQueryHandler(IProjectRepository ProjectRepository, IMapper Mapper)
         : IRequestHandler<GetAllProjectsQuery, ICollection<ProjectDTO>>
     {
-        public Task<ICollection<ProjectDTO>> Handle(GetAllProjectsQuery request, CancellationToken cancellationToken)
+        public async Task<ICollection<ProjectDTO>> Handle(GetAllProjectsQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var AllProjects = await ProjectRepository.GetAll(cancellationToken);
+
+            var PagedProjects = AllProjects.Take((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
+
+            return Mapper.Map<ICollection<ProjectDTO>>(PagedProjects);
         }
     }
 }

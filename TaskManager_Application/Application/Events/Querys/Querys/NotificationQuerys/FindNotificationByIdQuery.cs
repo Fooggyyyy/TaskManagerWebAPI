@@ -12,14 +12,9 @@ namespace TaskManager_Application.Application.Events.Querys.Querys.NotificationQ
     {
         public int Id { get; set; }
 
-        public int Page { get; set; }
-        public int PageSize { get; set; }
-
-        public FindNotificationByIdQuery(int id, int page, int pageSize)
+        public FindNotificationByIdQuery(int id)
         {
             Id = id;
-            Page = page;
-            PageSize = pageSize;
         }
 
         public FindNotificationByIdQuery() { }

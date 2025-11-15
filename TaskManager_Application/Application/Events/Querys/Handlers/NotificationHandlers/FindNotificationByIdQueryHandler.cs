@@ -12,13 +12,14 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Querys.Handlers.NotificationHandlers
 {
-#pragma warning disable CS9113
-    public class FindNotificationByIdQueryHandler(INotificationRepository NotificationRepository, IMapper Mapper, IValidator Validator)
+    public class FindNotificationByIdQueryHandler(INotificationRepository NotificationRepository, IMapper Mapper)
         : IRequestHandler<FindNotificationByIdQuery, NotificationDTO>
     {
-        public Task<NotificationDTO> Handle(FindNotificationByIdQuery request, CancellationToken cancellationToken)
+        public async Task<NotificationDTO> Handle(FindNotificationByIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var Notification = await NotificationRepository.FindById(request.Id, cancellationToken);
+
+            return Mapper.Map<NotificationDTO>(Notification);
         }
     }
 }

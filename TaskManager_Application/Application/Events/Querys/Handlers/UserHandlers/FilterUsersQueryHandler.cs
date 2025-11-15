@@ -13,13 +13,16 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Querys.Handlers.UserHandlers
 {
-#pragma warning disable CS9113
-    public class FilterUsersQueryHandler(IUserRepository UserRepository, IMapper Mapper, IValidator Validator)
+    public class FilterUsersQueryHandler(IUserRepository UserRepository, IMapper Mapper)
         : IRequestHandler<FilterUsersQuery, ICollection<UserDTO>>
     {
-        public Task<ICollection<UserDTO>> Handle(FilterUsersQuery request, CancellationToken cancellationToken)
+        public async Task<ICollection<UserDTO>> Handle(FilterUsersQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var FilterUsers = await UserRepository.Filter(request.FullName, request.Email, request.Role, cancellationToken);
+
+            var PagedUsers = FilterUsers.Take((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
+
+            return Mapper.Map<ICollection<UserDTO>>(PagedUsers);
         }
     }
 }

@@ -12,13 +12,14 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Querys.Handlers.LayerHandlers
 {
-#pragma warning disable CS9113
-    public class FindLayerByIdQueryHandler(ILayerRepository LayerRepository, IMapper Mapper, IValidator Validator)
+    public class FindLayerByIdQueryHandler(ILayerRepository LayerRepository, IMapper Mapper)
         : IRequestHandler<FindLayerByIdQuery, LayerDTO>
     {
-        public Task<LayerDTO> Handle(FindLayerByIdQuery request, CancellationToken cancellationToken)
+        public async Task<LayerDTO> Handle(FindLayerByIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var Layer = await LayerRepository.FindById(request.Id, cancellationToken);
+
+            return Mapper.Map<LayerDTO>(Layer);
         }
     }
 }

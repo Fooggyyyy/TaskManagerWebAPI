@@ -12,13 +12,16 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Querys.Handlers.CommentHandlers
 {
-#pragma warning disable CS9113
-    public class GetAllCommentsQueryHandler(ICommentRepository CommentRepository, IMapper Mapper, IValidator Validator)
+    public class GetAllCommentsQueryHandler(ICommentRepository CommentRepository, IMapper Mapper)
        : IRequestHandler<GetAllCommentsQuery, ICollection<CommentDTO>>
     {
-        public Task<ICollection<CommentDTO>> Handle(GetAllCommentsQuery request, CancellationToken cancellationToken)
+        public async Task<ICollection<CommentDTO>> Handle(GetAllCommentsQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var AllComments = await CommentRepository.GetAll(cancellationToken);
+
+            var PagedComments = AllComments.Skip((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
+
+            return Mapper.Map<ICollection<CommentDTO>>(PagedComments);
         }
     }
 }

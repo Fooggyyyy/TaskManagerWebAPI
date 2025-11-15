@@ -5,18 +5,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManager_Application.Application.Common.DTOs;
+using TaskManager_Domain.Domain.Enums;
 
 namespace TaskManager_Application.Application.Events.Querys.Querys.ProjectQuerys
 {
     public class FilterProjectsQuery : IRequest<ICollection<ProjectDTO>>
     {
         public string? ProjectName { get; set; }
-        public string? ProjectDescription { get; set; }
+        public Status? Status { get; set; }
 
-        public FilterProjectsQuery(string? projectName, string? projectDescription)
+        public int Page { get; set; }
+        public int PageSize { get; set; }
+
+        public FilterProjectsQuery(string? projectName, Status? Status, int page, int pageSize)
         {
             ProjectName = projectName;
-            ProjectDescription = projectDescription;
+            this.Status = Status;
+            Page = page;
+            PageSize = pageSize;
         }
 
         public FilterProjectsQuery() { }

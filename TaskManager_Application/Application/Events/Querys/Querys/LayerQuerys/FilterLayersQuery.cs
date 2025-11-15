@@ -11,10 +11,14 @@ namespace TaskManager_Application.Application.Events.Querys.Querys.LayerQuerys
     public class FilterLayersQuery : IRequest<ICollection<LayerDTO>>
     {
         public string? LayerName { get; set; }
+        public int Page { get; set; }
+        public int PageSize { get; set; }
 
-        public FilterLayersQuery(string? LayerName)
+        public FilterLayersQuery(string? layerName, int page, int pageSize)
         {
-            this.LayerName = LayerName;
+            LayerName = layerName;
+            Page = page;
+            PageSize = pageSize;
         }
 
         public FilterLayersQuery() { }

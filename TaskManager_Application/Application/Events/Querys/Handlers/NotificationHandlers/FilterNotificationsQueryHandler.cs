@@ -13,13 +13,16 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Querys.Handlers.NotificationHandlers
 {
-#pragma warning disable CS9113
-    public class FilterNotificationsQueryHandler(INotificationRepository NotificationRepository, IMapper Mapper, IValidator Validator)
+    public class FilterNotificationsQueryHandler(INotificationRepository NotificationRepository, IMapper Mapper)
         : IRequestHandler<FilterNotificationsQuery, ICollection<NotificationDTO>>
     {
-        public Task<ICollection<NotificationDTO>> Handle(FilterNotificationsQuery request, CancellationToken cancellationToken)
+        public async Task<ICollection<NotificationDTO>> Handle(FilterNotificationsQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var FilterNotification = await NotificationRepository.Filter(request.NotificationName, cancellationToken);
+
+            var PagedNotification = FilterNotification.Skip((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
+
+            return Mapper.Map<ICollection<NotificationDTO>>(PagedNotification);
         }
     }
 }

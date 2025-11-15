@@ -12,13 +12,14 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Querys.Handlers.UserHandlers
 {
-#pragma warning disable CS9113
-    public class FindUserByIdQueryHandler(IUserRepository UserRepository, IMapper Mapper, IValidator Validator)
+    public class FindUserByIdQueryHandler(IUserRepository UserRepository, IMapper Mapper)
         : IRequestHandler<FindUserByIdQuery, UserDTO>
     {
-        public Task<UserDTO> Handle(FindUserByIdQuery request, CancellationToken cancellationToken)
+        public async Task<UserDTO> Handle(FindUserByIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var User = await UserRepository.FindById(request.Id, cancellationToken);
+
+            return Mapper.Map<UserDTO>(User);
         }
     }
 }

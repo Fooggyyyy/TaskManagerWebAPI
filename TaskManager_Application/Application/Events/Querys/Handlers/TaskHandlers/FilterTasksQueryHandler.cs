@@ -13,13 +13,16 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Querys.Handlers.TaskHandlers
 {
-#pragma warning disable CS9113
-    public class FilterTasksQueryHandler(ITaskRepository TaskRepository, IMapper Mapper, IValidator Validator)
+    public class FilterTasksQueryHandler(ITaskRepository TaskRepository, IMapper Mapper)
         : IRequestHandler<FilterTaskByIdQuery, ICollection<TaskDTO>>
     {
-        public Task<ICollection<TaskDTO>> Handle(FilterTaskByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ICollection<TaskDTO>> Handle(FilterTaskByIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var FilterTasks = await TaskRepository.Filter(request.TaskName, request.TaskPriority, request.TaskDataStart, request.TaskDataEnd, request.IsComplited, cancellationToken);
+
+            var PagedTasks = FilterTasks.Take((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
+
+            return Mapper.Map<ICollection<TaskDTO>>(PagedTasks);
         }
     }
 }

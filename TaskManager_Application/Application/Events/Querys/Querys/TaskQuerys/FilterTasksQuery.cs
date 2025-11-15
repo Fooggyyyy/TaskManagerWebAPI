@@ -17,14 +17,18 @@ namespace TaskManager_Application.Application.Events.Querys.Querys.TaskQuerys
         public DateOnly? TaskDataEnd { get; set; }
         public bool IsComplited { get; set; }
 
-        public FilterTaskByIdQuery(string? taskName, Priority taskPriority,
-            DateOnly? taskDataStart, DateOnly? taskDataEnd, bool isComplited)
+        public int Page { get; set; }
+        public int PageSize { get; set; }
+
+        public FilterTaskByIdQuery(string? taskName, Priority taskPriority, DateOnly? taskDataStart, DateOnly? taskDataEnd, bool isComplited, int page, int pageSize)
         {
             TaskName = taskName;
             TaskPriority = taskPriority;
             TaskDataStart = taskDataStart;
             TaskDataEnd = taskDataEnd;
             IsComplited = isComplited;
+            Page = page;
+            PageSize = pageSize;
         }
 
         public FilterTaskByIdQuery()

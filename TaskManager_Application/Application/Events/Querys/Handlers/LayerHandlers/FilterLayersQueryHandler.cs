@@ -13,13 +13,16 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Querys.Handlers.LayerHandlers
 {
-#pragma warning disable CS9113
-    public class FilterLayersQueryHandler(ILayerRepository LayerRepository, IMapper Mapper, IValidator Validator)
+    public class FilterLayersQueryHandler(ILayerRepository LayerRepository, IMapper Mapper)
         : IRequestHandler<FilterLayersQuery, ICollection<LayerDTO>>
     {
-        public Task<ICollection<LayerDTO>> Handle(FilterLayersQuery request, CancellationToken cancellationToken)
+        public async Task<ICollection<LayerDTO>> Handle(FilterLayersQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var LayersFilter = await LayerRepository.Filter(request.LayerName, cancellationToken);
+
+            var PagedLayers = LayersFilter.Skip((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
+
+            return Mapper.Map<ICollection<LayerDTO>>(PagedLayers);
         }
     }
 }

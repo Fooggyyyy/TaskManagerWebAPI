@@ -12,13 +12,14 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Querys.Handlers.ProjectHandlers
 {
-#pragma warning disable CS9113
-    public class FindProjectByIdQueryHandler(IProjectRepository ProjectRepository, IMapper Mapper, IValidator Validator)
+    public class FindProjectByIdQueryHandler(IProjectRepository ProjectRepository, IMapper Mapper)
         : IRequestHandler<FindProjectByIdQuery, ProjectDTO>
     {
-        public Task<ProjectDTO> Handle(FindProjectByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ProjectDTO> Handle(FindProjectByIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var Project = await ProjectRepository.FindById(request.Id, cancellationToken);
+
+            return Mapper.Map<ProjectDTO>(Project); 
         }
     }
 }

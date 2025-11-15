@@ -12,14 +12,9 @@ namespace TaskManager_Application.Application.Events.Querys.Querys.LayerQuerys
     {
         public int Id { get; set; }
 
-        public int Page { get; set; }
-        public int PageSize { get; set; }
-
-        public FindLayerByIdQuery(int id, int page, int pageSize)
+        public FindLayerByIdQuery(int id)
         {
             Id = id;
-            Page = page;
-            PageSize = pageSize;
         }
 
         public FindLayerByIdQuery() { }

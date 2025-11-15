@@ -12,13 +12,16 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Querys.Handlers.NotificationHandlers
 {
-#pragma warning disable CS9113
-    public class GetAllNotificationsQueryHandler(INotificationRepository NotificationRepository, IMapper Mapper, IValidator Validator)
+    public class GetAllNotificationsQueryHandler(INotificationRepository NotificationRepository, IMapper Mapper)
         : IRequestHandler<GetAllNotificationsQuery, ICollection<NotificationDTO>>
     {
-        public Task<ICollection<NotificationDTO>> Handle(GetAllNotificationsQuery request, CancellationToken cancellationToken)
+        public async Task<ICollection<NotificationDTO>> Handle(GetAllNotificationsQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var AllNotification = await NotificationRepository.GetAll(cancellationToken);
+
+            var PagedNotification = AllNotification.Take((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
+
+            return Mapper.Map<ICollection<NotificationDTO>>(PagedNotification);
         }
     }
 }

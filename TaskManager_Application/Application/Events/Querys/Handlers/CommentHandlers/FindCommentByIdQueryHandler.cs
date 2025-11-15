@@ -12,13 +12,14 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Querys.Handlers.CommentHandlers
 {
-#pragma warning disable CS9113
-    public class FindCommentByIdQueryHandler(ICommentRepository CommentRepository, IMapper Mapper, IValidator Validator)
+    public class FindCommentByIdQueryHandler(ICommentRepository CommentRepository, IMapper Mapper)
         : IRequestHandler<FindCommentByIdQuery, CommentDTO>
     {
-        public Task<CommentDTO> Handle(FindCommentByIdQuery request, CancellationToken cancellationToken)
+        public async Task<CommentDTO> Handle(FindCommentByIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var Comment = await CommentRepository.FindById(request.Id, cancellationToken);
+
+            return Mapper.Map<CommentDTO>(Comment);
         }
     }
 }

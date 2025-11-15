@@ -10,11 +10,15 @@ namespace TaskManager_Application.Application.Events.Querys.Querys.CommentQuerys
 {
     public class FilterCommentsQuery : IRequest<ICollection<CommentDTO>>
     {
-        public string? CommentReleaseDateStart { get; set; }
+        public DateOnly? CommentReleaseDateStart { get; set; }
+        public int Page { get; set; }
+        public int PageSize { get; set; }
 
-        public FilterCommentsQuery(string? commentReleaseDateStart)
+        public FilterCommentsQuery(DateOnly? commentReleaseDateStart, int Page, int PageSize)
         {
             CommentReleaseDateStart = commentReleaseDateStart;
+            this.Page = Page;
+            this.PageSize = PageSize;
         }
 
         public FilterCommentsQuery()

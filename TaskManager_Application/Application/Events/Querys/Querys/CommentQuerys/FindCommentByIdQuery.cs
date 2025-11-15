@@ -12,14 +12,9 @@ namespace TaskManager_Application.Application.Events.Querys.Querys.CommentQuerys
     {
         public int Id { get; set; }
 
-        public int Page { get; set; }
-        public int PageSize { get; set; }
-
-        public FindCommentByIdQuery(int id, int page, int pageSize)
+        public FindCommentByIdQuery(int id)
         {
             Id = id;
-            Page = page;
-            PageSize = pageSize;
         }
 
         public FindCommentByIdQuery() { }

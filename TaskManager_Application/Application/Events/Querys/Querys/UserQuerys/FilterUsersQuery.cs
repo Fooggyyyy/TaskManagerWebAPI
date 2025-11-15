@@ -15,11 +15,16 @@ namespace TaskManager_Application.Application.Events.Querys.Querys.UserQuerys
         public string? Email { get; set; }
         public Role Role { get; set; }
 
-        public FilterUsersQuery(string? fullName, string? email, Role role)
+        public int Page { get; set; }
+        public int PageSize { get; set; }
+
+        public FilterUsersQuery(string? fullName, string? email, Role role, int page, int pageSize)
         {
             FullName = fullName;
             Email = email;
             Role = role;
+            Page = page;
+            PageSize = pageSize;
         }
 
         public FilterUsersQuery()
