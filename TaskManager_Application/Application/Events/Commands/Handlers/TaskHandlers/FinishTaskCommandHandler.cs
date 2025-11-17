@@ -11,13 +11,13 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Commands.Handlers.TaskHandlers
 {
-#pragma warning disable CS9113
-    public class FinishTaskCommandHandler(ITaskRepository TaskRepository, IMapper Mapper, IValidator Validator)
+    public class FinishTaskCommandHandler(ITaskRepository TaskRepository)
         : IRequestHandler<FinishTaskCommand, Unit>
     {
-        public Task<Unit> Handle(FinishTaskCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(FinishTaskCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await TaskRepository.FinishTask(request.Id, cancellationToken);
+            return Unit.Value;
         }
     }
 }

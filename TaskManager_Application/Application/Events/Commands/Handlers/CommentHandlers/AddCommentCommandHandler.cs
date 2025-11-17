@@ -6,18 +6,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManager_Application.Application.Common.DTOs;
 using TaskManager_Application.Application.Events.Commands.Commands.CommentCommands;
+using TaskManager_Domain.Domain.Entites;
 using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Commands.Handlers.CommentHandlers
 {
-    #pragma warning disable CS9113
-    public class AddCommentCommandHandler(ICommentRepository CommentRepository, IMapper Mapper, IValidator Validator)
+    public class AddCommentCommandHandler(ICommentRepository CommentRepository, IMapper Mapper, IValidator<CommentDTO> Validator)
         : IRequestHandler<AddCommentCommand, Unit>
     {
-        public Task<Unit> Handle(AddCommentCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(AddCommentCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var dto = Mapper.Map<CommentDTO>(request);
+            await Validator.ValidateAndThrowAsync(dto, cancellationToken);
+
+            var Result = Mapper.Map<Comment>(dto);
+
+            await CommentRepository.Add(Result, cancellationToken);
+
+            return Unit.Value;
         }
     }
 }

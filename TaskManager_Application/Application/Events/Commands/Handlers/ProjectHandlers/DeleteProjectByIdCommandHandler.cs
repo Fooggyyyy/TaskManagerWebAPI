@@ -11,13 +11,13 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Commands.Handlers.ProjectHandlers
 {
-#pragma warning disable CS9113
-    public class DeleteProjectByIdCommandHandler(IProjectRepository ProjectRepository, IMapper Mapper, IValidator Validator)
+    public class DeleteProjectByIdCommandHandler(IProjectRepository ProjectRepository)
         : IRequestHandler<DeleteProjectByIdCommand, Unit>
     {
-        public Task<Unit> Handle(DeleteProjectByIdCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteProjectByIdCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await ProjectRepository.DeleteById(request.Id, cancellationToken);
+            return Unit.Value;
         }
     }
 }

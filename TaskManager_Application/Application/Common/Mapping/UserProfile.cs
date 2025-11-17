@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManager_Application.Application.Common.DTOs;
+using TaskManager_Application.Application.Events.Commands.Commands.UserCommands;
 using TaskManager_Domain.Domain.Entites;
 
 namespace TaskManager_Application.Application.Common.Mapping
@@ -14,6 +15,7 @@ namespace TaskManager_Application.Application.Common.Mapping
         public UserProfile() 
         {
             CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<AddUserCommand,  UserDTO>();
         }
     }
 }

@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManager_Application.Application.Common.DTOs;
 using TaskManager_Domain.Domain.Entites;
 
 namespace TaskManager_Application.Application.Common.Validations
 {
-    public class UserValidator : AbstractValidator<User>
+    public class UserValidator : AbstractValidator<UserDTO>
     {
         public UserValidator() 
         {

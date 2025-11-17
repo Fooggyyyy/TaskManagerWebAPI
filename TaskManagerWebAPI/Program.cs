@@ -2,10 +2,12 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using TaskManager_Application.Application.Common.DTOs;
 using TaskManager_Application.Application.Common.HashHelper;
 using TaskManager_Application.Application.Common.JWT.JWTService;
 using TaskManager_Application.Application.Common.Mapping;
 using TaskManager_Application.Application.Common.Validations;
+using TaskManager_Application.Application.Events.Commands.Commands.UserCommands;
 using TaskManager_Domain.Domain.Entites;
 using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 using TaskManager_Infastructure.Infastructure.Repositories;
@@ -63,12 +65,13 @@ builder.Services.AddAutoMapper(cfg =>
 });
 
 //FluentValidation
-builder.Services.AddScoped<IValidator<Comment>, CommentValidator>();
-builder.Services.AddScoped<IValidator<Layer>, LayerValidator>();
-builder.Services.AddScoped<IValidator<Notification>, NotificationValidator>();
-builder.Services.AddScoped<IValidator<Project>, ProjectValidator>();
-builder.Services.AddScoped<IValidator<TaskManager_Domain.Domain.Entites.Task>, TaskValidator>();
-builder.Services.AddScoped<IValidator<User>, UserValidator>();
+builder.Services.AddScoped<IValidator<CommentDTO>, CommentValidator>();
+builder.Services.AddScoped<IValidator<LayerDTO>, LayerValidator>();
+builder.Services.AddScoped<IValidator<NotificationDTO>, NotificationValidator>();
+builder.Services.AddScoped<IValidator<ProjectDTO>, ProjectValidator>();
+builder.Services.AddScoped<IValidator<TaskDTO>, TaskValidator>();
+builder.Services.AddScoped<IValidator<UserDTO>, UserValidator>();
+builder.Services.AddScoped<IValidator<ResetPasswordUserCommand>, PasswordValidator>();
 
 //HashPassword
 builder.Services.AddScoped<IHashPassword, HashPasswordService>();

@@ -10,6 +10,11 @@ namespace TaskManager_Application.Application.Common.DTOs
     public class TaskDTO
     {
         public int TaskID { get; set; }
+
+        public int LayerID { get; set; }
+        public int ProjectID { get; set; }
+        public int UserID { get; set; }
+
         public string? TaskName { get; set; }
         public string? Description { get; set; }
         public Priority Priority { get; set; }
@@ -20,10 +25,15 @@ namespace TaskManager_Application.Application.Common.DTOs
         {
 
         }
-        public TaskDTO(int taskID, string? taskName, string? description,
-            Priority priority, DateOnly dateStart, DateOnly dateEnd, bool isCompleted)
+
+        public TaskDTO(int taskID, int layerID, int projectID, int userID, 
+            string? taskName, string? description, Priority priority,
+            DateOnly dateStart, DateOnly dateEnd, bool isCompleted)
         {
             TaskID = taskID;
+            LayerID = layerID;
+            ProjectID = projectID;
+            UserID = userID;
             TaskName = taskName;
             Description = description;
             Priority = priority;

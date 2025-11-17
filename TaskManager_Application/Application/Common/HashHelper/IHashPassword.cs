@@ -8,7 +8,7 @@ namespace TaskManager_Application.Application.Common.HashHelper
 {
     public interface IHashPassword
     {
-        string HashPassword(string password);
-        bool Verify(string PlainPassword, string HashedPassword);
+        string HashPassword(string? password);
+        bool Verify(string? PlainPassword, string? HashedPassword);
     }
 }

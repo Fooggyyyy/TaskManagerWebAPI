@@ -19,6 +19,8 @@ namespace TaskManager_Infastructure.Infastructure.DataBase.ConfigurationTable
             builder.Property(x => x.ProjectName).IsRequired();
             builder.Property(x => x.Description).IsRequired();
             builder.Property(x => x.Status).HasDefaultValue(Status.Planned).IsRequired();
+
+            builder.HasIndex(x => x.ProjectName).IsUnique();
         }
     }
 }

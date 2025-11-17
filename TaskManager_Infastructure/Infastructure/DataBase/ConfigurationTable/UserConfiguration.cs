@@ -25,6 +25,9 @@ namespace TaskManager_Infastructure.Infastructure.DataBase.ConfigurationTable
                 .WithMany(y => y.Users)
                 .HasForeignKey(z => z.ProjectID)
                 .OnDelete(DeleteBehavior.NoAction);
-        }
+
+            builder.HasIndex(x => x.Email).IsUnique();
+
+        }   
     }
 }

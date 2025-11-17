@@ -11,13 +11,13 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Commands.Handlers.LayerHandlers
 {
-#pragma warning disable CS9113
-    public class DeleteLayerByIdCommandHandler(ILayerRepository LayerRepository, IMapper Mapper, IValidator Validator)
+    public class DeleteLayerByIdCommandHandler(ILayerRepository LayerRepository)
         : IRequestHandler<DeleteLayerByIdCommand, Unit>
     {
-        public Task<Unit> Handle(DeleteLayerByIdCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteLayerByIdCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await LayerRepository.DeleteById(request.Id, cancellationToken);
+            return Unit.Value;
         }
     }
 }

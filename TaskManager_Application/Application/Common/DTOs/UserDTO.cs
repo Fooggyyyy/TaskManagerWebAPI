@@ -10,6 +10,8 @@ namespace TaskManager_Application.Application.Common.DTOs
     public class UserDTO
     {
         public int UserID { get; set; }
+
+        public int ProjectID { get; set; }
         public string? FullName { get; set; }
         public string? Email { get; set; }
         public string? Password { get; set; }
@@ -18,13 +20,14 @@ namespace TaskManager_Application.Application.Common.DTOs
         {
 
         }
-        public UserDTO(int userID, string? fullName, string? email, string? password, Role role)
+        public UserDTO(int userID, string? fullName, string? email, string? password, Role role, int projectId)
         {
             UserID = userID;
             FullName = fullName;
             Email = email;
             Password = password;
             Role = role;
+            ProjectID = projectId;
         }
     }
 }

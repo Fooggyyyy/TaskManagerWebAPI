@@ -11,13 +11,13 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Commands.Handlers.UserHandlers
 {
-#pragma warning disable CS9113
-    public class DeleteAllUsersCommandHandler(IUserRepository UserRepository, IMapper Mapper, IValidator Validator)
+    public class DeleteAllUsersCommandHandler(IUserRepository UserRepository)
         : IRequestHandler<DeleteAllUsersCommand, Unit>
     {
-        public Task<Unit> Handle(DeleteAllUsersCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteAllUsersCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await UserRepository.DeleteAll(cancellationToken);
+            return Unit.Value;
         }
     }
 }

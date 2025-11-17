@@ -11,13 +11,13 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Commands.Handlers.NotificationHandlers
 {
-#pragma warning disable CS9113
-    public class RedirectionToAnotherUserCommandHandler(INotificationRepository NotificationRepository, IMapper Mapper, IValidator Validator)
+    public class RedirectionToAnotherUserCommandHandler(INotificationRepository NotificationRepository)
         : IRequestHandler<RedirectionToAnotherUserCommand, Unit>
     {
-        public Task<Unit> Handle(RedirectionToAnotherUserCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(RedirectionToAnotherUserCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await NotificationRepository.RedirectionToAnotherUser(request.NotificationId, request.OldUserId, request.NewUserId, cancellationToken);
+            return Unit.Value;
         }
     }
 }

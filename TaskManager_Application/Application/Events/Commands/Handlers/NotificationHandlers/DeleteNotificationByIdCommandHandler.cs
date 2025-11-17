@@ -11,13 +11,13 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Commands.Handlers.NotificationHandlers
 {
-#pragma warning disable CS9113
-    public class DeleteNotificationByIdCommandHandler(INotificationRepository NotificationRepository, IMapper Mapper, IValidator Validator)
+    public class DeleteNotificationByIdCommandHandler(INotificationRepository NotificationRepository)
         : IRequestHandler<DeleteNotificationByIdCommand, Unit>
     {
-        public Task<Unit> Handle(DeleteNotificationByIdCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteNotificationByIdCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await NotificationRepository.DeleteById(request.Id, cancellationToken);
+            return Unit.Value;
         }
     }
 }
