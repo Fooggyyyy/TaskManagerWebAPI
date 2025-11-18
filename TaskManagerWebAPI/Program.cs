@@ -2,6 +2,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Reflection;
 using System.Text;
 using TaskManager_Application.Application.Common.DTOs;
 using TaskManager_Application.Application.Common.HashHelper;
@@ -9,10 +10,12 @@ using TaskManager_Application.Application.Common.JWT.JWTService;
 using TaskManager_Application.Application.Common.Mapping;
 using TaskManager_Application.Application.Common.Validations;
 using TaskManager_Application.Application.Events.Commands.Commands.UserCommands;
+using TaskManager_Application.Application.Events.Querys.Handlers.CommentHandlers;
 using TaskManager_Domain.Domain.Entites;
 using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 using TaskManager_Infastructure.Infastructure.DataBase;
 using TaskManager_Infastructure.Infastructure.Repositories;
+using TaskManager_WebAPI.WebAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 var AuthBuilder = builder.Services.AddAuthorizationBuilder();
@@ -83,6 +86,9 @@ builder.Services.AddScoped<IValidator<TaskDTO>, TaskValidator>();
 builder.Services.AddScoped<IValidator<UserDTO>, UserValidator>();
 builder.Services.AddScoped<IValidator<ResetPasswordUserCommand>, PasswordValidator>();
 
+//MediatR
+builder.Services.AddMediatR(cfg =>  cfg.RegisterServicesFromAssemblies(typeof(GetAllCommentsQueryHandler).Assembly) );
+
 //HashPassword
 builder.Services.AddScoped<IHashPassword, HashPasswordService>();
 
@@ -90,18 +96,19 @@ builder.Services.AddScoped<IHashPassword, HashPasswordService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
+//Swagger
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-//using (var scope = app.Services.CreateScope())
-//{
-//    var context = scope.ServiceProvider.GetRequiredService<AppDBContext>();
-//    context.Database.EnsureDeleted();
-//    context.Database.EnsureCreated();
-//}
-
 
 app.MapControllers();
 app.Run();
