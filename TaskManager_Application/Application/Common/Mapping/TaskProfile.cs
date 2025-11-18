@@ -16,6 +16,7 @@ namespace TaskManager_Application.Application.Common.Mapping
         {
             CreateMap<TaskManager_Domain.Domain.Entites.Task, TaskDTO>().ReverseMap();
             CreateMap<AddTaskCommand, TaskDTO>();
+            CreateMap<UpdateTaskCommand, TaskDTO>();
         }
     }
 }

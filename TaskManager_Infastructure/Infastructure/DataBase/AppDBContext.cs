@@ -11,19 +11,20 @@ namespace TaskManager_Infastructure.Infastructure.DataBase
 {
     public class AppDBContext : DbContext
     {
-        public string ConnectionPath = @"Server=localhost;Database=TaskManager;Trusted_Connection=True;TrustServerCertificate=True;";
-
         public DbSet<Comment> Comments { get; set; } = null!;
+        public DbSet<RefreshToken> RefreshTokens { get; set; } = null!;
         public DbSet<Layer> Layers { get; set; } = null!;
         public DbSet<Notification> Notifications { get; set; } = null!;
         public DbSet<Project> Projects { get; set; } = null!;
         public DbSet<TaskManager_Domain.Domain.Entites.Task> Tasks { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public AppDBContext(DbContextOptions<AppDBContext> options)
+        : base(options)
         {
-            optionsBuilder.UseLazyLoadingProxies().UseSqlServer(ConnectionPath);
         }
+
+        public AppDBContext() : base() { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,6 +34,7 @@ namespace TaskManager_Infastructure.Infastructure.DataBase
             modelBuilder.ApplyConfiguration(new ProjectConfiguration());
             modelBuilder.ApplyConfiguration(new TaskConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new RefreshTokenConfiguration());
         }
     }
 }

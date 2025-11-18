@@ -24,7 +24,7 @@ namespace TaskManager_Application.Application.Events.Commands.Handlers.LayerHand
 
             var AllLayers = await LayerRepository.GetAll(cancellationToken);
 
-            var LayerName = AllLayers.Where(x => x.LayerName == request.LayerName && request.ProjectId == request.ProjectId).Select(y => y.LayerName).FirstOrDefault();
+            var LayerName = AllLayers.Where(x => x.LayerName == request.LayerName && request.ProjectID == request.ProjectID).Select(y => y.LayerName).FirstOrDefault();
             if (LayerName != null)
                 throw new ArgumentException("Не может быть два одинаковых слоя в одном проекте");
 

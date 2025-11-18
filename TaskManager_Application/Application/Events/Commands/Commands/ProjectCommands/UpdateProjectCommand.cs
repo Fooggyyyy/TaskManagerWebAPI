@@ -10,17 +10,17 @@ namespace TaskManager_Application.Application.Events.Commands.Commands.ProjectCo
 {
     public class UpdateProjectCommand : IRequest<Unit>
     {
-        public int Id { get; set; }
+        public int ProjectID { get; set; }
 
         public string? ProjectName { get; set; }
-        public string? ProkectDescription { get; set; }
+        public string? Description { get; set; }
         public Status Status { get; set; }
 
         public UpdateProjectCommand(int id, string? projectName, string? prokectDescription, Status status)
         {
-            Id = id;
+            ProjectID = id;
             ProjectName = projectName;
-            ProkectDescription = prokectDescription;
+            Description = prokectDescription;
             Status = status;
         }
 

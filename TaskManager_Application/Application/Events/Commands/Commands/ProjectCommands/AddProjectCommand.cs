@@ -11,13 +11,13 @@ namespace TaskManager_Application.Application.Events.Commands.Commands.ProjectCo
     public class AddProjectCommand : IRequest<Unit>
     {
         public string? ProjectName { get; set; }
-        public string? ProkectDescription { get; set; }
+        public string? Description { get; set; }
         public Status Status { get; set; }
 
         public AddProjectCommand(string? projectName, string? prokectDescription, Status status)
         {
             ProjectName = projectName;
-            ProkectDescription = prokectDescription;
+            Description = prokectDescription;
             Status = status;
         }
 

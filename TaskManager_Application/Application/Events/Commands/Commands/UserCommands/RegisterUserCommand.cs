@@ -4,27 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TaskManager_Domain.Domain.Enums;
 
 namespace TaskManager_Application.Application.Events.Commands.Commands.UserCommands
 {
-    public class UpdateUserCommand : IRequest<object>
+    public class RegisterUserCommand : IRequest<object>
     {
-        public int ID { get; set; }
-
         public string? FullName { get; set; }
         public string? Email { get; set; }
-        public Role Role { get; set; }
+        public string? Password { get; set; }
 
-        public UpdateUserCommand(int id, string? fullName, string? email, Role role)
+        public RegisterUserCommand(string? fullName, string? email, string? password)
         {
-            ID = id;
             FullName = fullName;
             Email = email;
-            Role = role;
+            Password = password;
         }
 
-        public UpdateUserCommand()
+        public RegisterUserCommand()
         {
 
         }

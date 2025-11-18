@@ -9,6 +9,7 @@ namespace TaskManager_Application.Application.Common.JWT.JWTService
 {
     public interface IJwtService
     {
-        Task<string> GenerateToken(int UserId, string Email, Role role);  
+        Task<string> GenerateToken(int UserId, string? Email, Role role);
+        Task<string> GenerateRefreshToken();
     }
 }

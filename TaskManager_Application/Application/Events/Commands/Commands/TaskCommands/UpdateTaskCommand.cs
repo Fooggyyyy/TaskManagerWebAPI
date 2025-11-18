@@ -10,20 +10,16 @@ namespace TaskManager_Application.Application.Events.Commands.Commands.TaskComma
 {
     public class UpdateTaskCommand : IRequest<Unit>
     {
+        public int TaskID { get; set; }
         public string? TaskName { get; set; }
-        public string? TaskDescription { get; set; }
+        public string? Description { get; set; }
         public Priority Priority { get; set; }
-        public DateOnly DataStart { get; set; }
-        public DateOnly DataEnd { get; set; }
-
-        public UpdateTaskCommand(string? taskName, string? taskDescription, Priority priority,
-            DateOnly dataStart, DateOnly dataEnd)
+        public UpdateTaskCommand(int id, string? taskName, string? taskDescription, Priority priority)
         {
+            TaskID = id;
             TaskName = taskName;
-            TaskDescription = taskDescription;
+            Description = taskDescription;
             Priority = priority;
-            DataStart = dataStart;
-            DataEnd = dataEnd;
         }
 
         public UpdateTaskCommand() 

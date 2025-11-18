@@ -6,18 +6,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManager_Application.Application.Common.DTOs;
+using TaskManager_Application.Application.Common.JWT.JWTService;
 using TaskManager_Application.Application.Events.Commands.Commands.UserCommands;
+using TaskManager_Domain.Domain.Entites;
 using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Commands.Handlers.UserHandlers
 {
-#pragma warning disable CS9113
-    public class UpdateUserCommandHandler(IUserRepository UserRepository, IMapper Mapper, IValidator Validator)
-        : IRequestHandler<UpdateUserCommand, Unit>
+    public class UpdateUserCommandHandler(IUserRepository UserRepository, IRefreshTokenRepository RefreshTokenRepository,IJwtService JwtService, IMapper Mapper, IValidator<UserDTO> Validator)
+        : IRequestHandler<UpdateUserCommand, object>
     {
-        public Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+        public async Task<object> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var user = await UserRepository.FindById(request.ID, cancellationToken) ?? throw new ValidationException("Пользователь не найден");
+
+            var dto = Mapper.Map<UserDTO>(user);
+
+            dto.FullName = request.FullName;
+            dto.Email = request.Email;
+
+            await Validator.ValidateAndThrowAsync(dto, cancellationToken);
+
+            var AccesToken = await JwtService.GenerateToken(request.ID, user.Password, request.Role);
+            var RefreshToken = await JwtService.GenerateRefreshToken();
+
+            var DbRefreshToken = new RefreshToken(RefreshToken, user.UserID, DateTime.Now.AddDays(7), user);
+            await RefreshTokenRepository.Add(DbRefreshToken, cancellationToken);
+            await UserRepository.Update(request.ID, request.FullName, request.Email, request.Role, cancellationToken);
+
+            return new {AccesToken,  RefreshToken};
         }
     }
 }

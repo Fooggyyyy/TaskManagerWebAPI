@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TaskManager_Application.Application.Events.Commands.Commands.UserCommands
 {
-    public class LoginUserCommand : IRequest<Unit>
+    public class LoginUserCommand : IRequest<object>
     {
         public string? Email { get; set; }
         public string? Password { get; set; }

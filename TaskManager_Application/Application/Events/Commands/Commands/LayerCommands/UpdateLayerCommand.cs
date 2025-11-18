@@ -9,12 +9,12 @@ namespace TaskManager_Application.Application.Events.Commands.Commands.LayerComm
 {
     public class UpdateLayerCommand : IRequest<Unit>
     {
-        public int Id { get; set; }
+        public int LayerID { get; set; }
         public string? LayerName { get; set; }
 
         public UpdateLayerCommand(int id, string? layerName)
         {
-            Id = id;
+            LayerID = id;
             LayerName = layerName;
         }
 

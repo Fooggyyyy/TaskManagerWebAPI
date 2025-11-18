@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TaskManager_Application.Application.Events.Commands.Commands.UserCommands
 {
-    public class ResetPasswordUserCommand : IRequest<Unit>
+    public class ResetPasswordUserCommand : IRequest<object>
     {
         public int Id { get; set; }
         

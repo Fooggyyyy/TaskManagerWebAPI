@@ -10,12 +10,12 @@ namespace TaskManager_Application.Application.Events.Commands.Commands.LayerComm
     public class AddLayerCommand : IRequest<Unit>
     {
         public string? LayerName { get; set; }
-        public int ProjectId { get; set; }
+        public int ProjectID { get; set; }
 
         public AddLayerCommand(string? LayerName, int projectId)
         {
             this.LayerName = LayerName;
-            ProjectId = projectId;
+            ProjectID = projectId;
         }
 
         public AddLayerCommand() 

@@ -16,6 +16,7 @@ namespace TaskManager_Application.Application.Common.Mapping
         {
             CreateMap<Layer, LayerDTO>().ReverseMap();
             CreateMap<AddLayerCommand, LayerDTO>();
+            CreateMap<UpdateLayerCommand, LayerDTO>();
         }
     }
 }

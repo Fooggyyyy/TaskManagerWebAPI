@@ -4,6 +4,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManager_Domain.Domain.Entites;
@@ -13,8 +14,12 @@ namespace TaskManager_Application.Application.Common.JWT.JWTService
 {
     public class JwtService(IConfiguration _configuration) : IJwtService
     {
+        public Task<string> GenerateRefreshToken()
+        {
+            return System.Threading.Tasks.Task.FromResult(Convert.ToBase64String(RandomNumberGenerator.GetBytes(32)));
+        }
 
-        public Task<string> GenerateToken(int UserId, string Email, Role role)
+        public Task<string> GenerateToken(int UserId, string? Email, Role role)
         {
             var jwtSettings = _configuration.GetSection("Jwt");
             var key = Encoding.UTF8.GetBytes(jwtSettings.Key);
@@ -25,7 +30,7 @@ namespace TaskManager_Application.Application.Common.JWT.JWTService
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, UserId.ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, Email),
+                new Claim(JwtRegisteredClaimNames.Email, Email ?? string.Empty),
                 new Claim(ClaimTypes.Role, role.ToString())
             };
 

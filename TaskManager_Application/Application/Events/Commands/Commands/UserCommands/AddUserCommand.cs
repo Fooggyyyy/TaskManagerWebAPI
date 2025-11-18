@@ -8,7 +8,7 @@ using TaskManager_Domain.Domain.Enums;
 
 namespace TaskManager_Application.Application.Events.Commands.Commands.UserCommands
 {
-    public class AddUserCommand : IRequest<Unit>
+    public class AddUserCommand : IRequest<object>
     {
         public int ProjectId { get; set; }
 

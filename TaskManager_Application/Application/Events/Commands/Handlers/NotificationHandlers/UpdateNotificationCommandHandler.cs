@@ -6,18 +6,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManager_Application.Application.Common.DTOs;
 using TaskManager_Application.Application.Events.Commands.Commands.NotificationCommands;
 using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
+using TaskManager_Infastructure.Infastructure.Repositories;
 
 namespace TaskManager_Application.Application.Events.Commands.Handlers.NotificationHandlers
 {
-#pragma warning disable CS9113
-    public class UpdateNotificationCommandHandler(INotificationRepository NotificationRepository, IMapper Mapper, IValidator Validator)
+    public class UpdateNotificationCommandHandler(INotificationRepository NotificationRepository, IMapper Mapper, IValidator<NotificationDTO> Validator)
         : IRequestHandler<UpdateNotificationCommand, Unit>
     {
-        public Task<Unit> Handle(UpdateNotificationCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdateNotificationCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var dto = Mapper.Map<NotificationDTO>(request);
+
+            await Validator.ValidateAndThrowAsync(dto, cancellationToken);
+            await NotificationRepository.Update(request.NotificationID, request.NotificationName, request.NotificationDescription, cancellationToken);
+
+            return Unit.Value;
         }
     }
 }

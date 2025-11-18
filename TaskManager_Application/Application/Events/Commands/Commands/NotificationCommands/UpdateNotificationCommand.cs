@@ -9,14 +9,14 @@ namespace TaskManager_Application.Application.Events.Commands.Commands.Notificat
 {
     public class UpdateNotificationCommand : IRequest<Unit>
     {
-        public int Id { get; set; }
+        public int NotificationID { get; set; }
 
         public string? NotificationName { get; set; }
         public string? NotificationDescription { get; set; }
 
         public UpdateNotificationCommand(int id, string? notificationame, string? notificationdescription)
         {
-            Id = id;
+            NotificationID = id;
             NotificationName = notificationame;
             NotificationDescription = notificationdescription;
         }

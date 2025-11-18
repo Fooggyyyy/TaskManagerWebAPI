@@ -16,6 +16,7 @@ namespace TaskManager_Application.Application.Common.Mapping
         {
             CreateMap<Notification, NotificationDTO>().ReverseMap();
             CreateMap<AddNotificationCommand, NotificationDTO>();
+            CreateMap<UpdateNotificationCommand, NotificationDTO>();
         }
     }
 }

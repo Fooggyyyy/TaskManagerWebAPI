@@ -1,5 +1,6 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TaskManager_Application.Application.Common.DTOs;
@@ -10,6 +11,7 @@ using TaskManager_Application.Application.Common.Validations;
 using TaskManager_Application.Application.Events.Commands.Commands.UserCommands;
 using TaskManager_Domain.Domain.Entites;
 using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
+using TaskManager_Infastructure.Infastructure.DataBase;
 using TaskManager_Infastructure.Infastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,11 +41,18 @@ builder.Services.AddAuthentication(options =>
 
 
 //Authorization
-AuthBuilder.AddPolicy("UserOnly", policy => policy.RequireRole("User"));
+AuthBuilder.AddPolicy("DeveloperOnly", policy => policy.RequireRole("Developer"));
+AuthBuilder.AddPolicy("ProjectManagerOnly", policy => policy.RequireRole("ProjectManager"));
+AuthBuilder.AddPolicy("Client", policy => policy.RequireRole("Client"));
 AuthBuilder.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
 
+
 //JWT Service
-builder.Services.AddScoped<IJwtService, JwtService>(); 
+builder.Services.AddScoped<IJwtService, JwtService>();
+
+//DataBase
+builder.Services.AddDbContext<AppDBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")).UseLazyLoadingProxies());
 
 //Repositories
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
@@ -52,6 +61,7 @@ builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 
 //AutoMapper
 builder.Services.AddAutoMapper(cfg =>
@@ -84,6 +94,14 @@ var app = builder.Build();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+//using (var scope = app.Services.CreateScope())
+//{
+//    var context = scope.ServiceProvider.GetRequiredService<AppDBContext>();
+//    context.Database.EnsureDeleted();
+//    context.Database.EnsureCreated();
+//}
+
 
 app.MapControllers();
 app.Run();

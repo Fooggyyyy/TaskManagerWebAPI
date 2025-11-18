@@ -16,6 +16,7 @@ namespace TaskManager_Application.Application.Common.Mapping
         {
             CreateMap<Comment, CommentDTO>().ReverseMap();
             CreateMap<AddCommentCommand, CommentDTO>();
+            CreateMap<UpdateCommentCommand, CommentDTO>();
         }
     }
 }

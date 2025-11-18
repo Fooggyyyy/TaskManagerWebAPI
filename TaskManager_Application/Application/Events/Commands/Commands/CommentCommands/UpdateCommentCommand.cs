@@ -9,12 +9,12 @@ namespace TaskManager_Application.Application.Events.Commands.Commands.CommentCo
 {
     public class UpdateCommentCommand : IRequest<Unit>
     {
-        public int Id { get; set; }
+        public int CommentID { get; set; }
         public string? CommentBody { get; set; }
 
         public UpdateCommentCommand(int id, string? commentBody) 
         {
-            Id = id;
+            CommentID = id;
             CommentBody = commentBody;
         }
 
