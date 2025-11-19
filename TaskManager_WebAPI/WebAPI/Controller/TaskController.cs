@@ -7,7 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManager_Application.Application.Common.DTOs;
+using TaskManager_Application.Application.Events.Commands.Commands.CommentCommands;
+using TaskManager_Application.Application.Events.Commands.Commands.TaskCommands;
 using TaskManager_Application.Application.Events.Querys.Querys.CommentQuerys;
+using TaskManager_Application.Application.Events.Querys.Querys.LayerQuerys;
 using TaskManager_Application.Application.Events.Querys.Querys.TaskQuerys;
 
 namespace TaskManager_WebAPI.WebAPI.Controller
@@ -16,12 +19,66 @@ namespace TaskManager_WebAPI.WebAPI.Controller
     [Route("API/Task/")]
     public class TaskController(IMediator Mediator) : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("All")]
         [AllowAnonymous]
         public async Task<ActionResult<ICollection<TaskDTO>>> GetAll(CancellationToken cancellationToken,
             [FromQuery] int Page = 1, [FromQuery] int PageSize = 10)
         {
             var result = await Mediator.Send(new GetAllTasksQuery(Page, PageSize), cancellationToken);
+
+            return Ok(result);
+        }
+
+        [HttpGet("GetById")]
+        [AllowAnonymous]
+        public async Task<ActionResult<TaskDTO>> GetById(CancellationToken cancellationToken, [FromQuery] int Id = 0)
+        {
+            var result = await Mediator.Send(new FindTaskByIdQuery(Id), cancellationToken);
+
+            return Ok(result);
+        }
+
+        [HttpGet("Filter")]
+        [AllowAnonymous]
+        public async Task<ActionResult<ICollection<TaskDTO>>> GetFilter([FromQuery] FilterTaskByIdQuery query, CancellationToken cancellationToken)
+        {
+            var result = await Mediator.Send(query, cancellationToken);
+
+            return Ok(result);
+        }
+
+        [HttpDelete("DeleteAll")]
+        [AllowAnonymous]
+        public async Task<ActionResult> DeleteAll(CancellationToken cancellationToken)
+        {
+            var result = await Mediator.Send(new DeleteAllTasksCommand(), cancellationToken);
+
+            return Ok(result);
+        }
+
+        [HttpDelete("DeleteById")]
+        [AllowAnonymous]
+        public async Task<ActionResult> DeleteById(CancellationToken cancellationToken, [FromQuery] int Id = 0)
+        {
+            var result = await Mediator.Send(new DeleteTaskByIdCommand(Id), cancellationToken);
+
+            return Ok(result);
+        }
+
+        [HttpPut("Update")]
+        [AllowAnonymous]
+        public async Task<ActionResult> Update([FromBody] UpdateTaskCommand command, CancellationToken cancellationToken)
+        {
+            var result = await Mediator.Send(command, cancellationToken);
+
+            return Ok(result);
+        }
+
+        [HttpPost("Add")]
+        [AllowAnonymous]
+        public async Task<ActionResult> Add([FromBody] AddTaskCommand command, CancellationToken cancellationToken)
+        {
+            var result = await Mediator.Send(command, cancellationToken);
 
             return Ok(result);
         }

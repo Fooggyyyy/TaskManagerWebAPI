@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TaskManager_WebAPI\TaskManager_WebAPI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Tests\CommandTests\CommentTests\" />
+    <Folder Include="Tests\CommandTests\LayerTests\" />
+    <Folder Include="Tests\CommandTests\NotificationTests\" />
+    <Folder Include="Tests\CommandTests\ProjectTests\" />
+    <Folder Include="Tests\CommandTests\TaskTests\" />
+    <Folder Include="Tests\CommandTests\UserTests\" />
+    <Folder Include="Tests\QueryTests\CommentTests\" />
+    <Folder Include="Tests\QueryTests\LayerTests\" />
+    <Folder Include="Tests\QueryTests\NotificationTests\" />
+    <Folder Include="Tests\QueryTests\ProjectTests\" />
+    <Folder Include="Tests\QueryTests\TaskTests\" />
+    <Folder Include="Tests\QueryTests\UserTests\" />
+    <Folder Include="Tests\RepoTests\CommentTests\" />
+    <Folder Include="Tests\RepoTests\LayerTests\" />
+    <Folder Include="Tests\RepoTests\NotificationTests\" />
+    <Folder Include="Tests\RepoTests\ProjectTests\" />
+    <Folder Include="Tests\RepoTests\TaskTests\" />
+    <Folder Include="Tests\RepoTests\UserTests\" />
+    <Folder Include="Tests\ValidatonTests\CommentTests\" />
+    <Folder Include="Tests\ValidatonTests\LayerTests\" />
+    <Folder Include="Tests\ValidatonTests\NotificationTests\" />
+    <Folder Include="Tests\ValidatonTests\ProjectTests\" />
+    <Folder Include="Tests\ValidatonTests\TaskTests\" />
+    <Folder Include="Tests\ValidatonTests\UserTests\" />
+  </ItemGroup>
+
+</Project>
