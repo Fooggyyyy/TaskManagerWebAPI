@@ -19,7 +19,7 @@ namespace TaskManager_Application.Application.Events.Querys.Handlers.ProjectHand
         {
             var AllProjects = await ProjectRepository.GetAll(cancellationToken);
 
-            var PagedProjects = AllProjects.Take((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
+            var PagedProjects = AllProjects.Skip((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
 
             return Mapper.Map<ICollection<ProjectDTO>>(PagedProjects);
         }

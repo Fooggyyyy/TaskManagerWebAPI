@@ -19,7 +19,7 @@ namespace TaskManager_Application.Application.Events.Querys.Handlers.TaskHandler
         {
             var AllTasks = await TaskRepository.GetAll(cancellationToken);
 
-            var PagedTasks = AllTasks.Take((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
+            var PagedTasks = AllTasks.Skip((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
 
             return Mapper.Map<ICollection<TaskDTO>>(PagedTasks);
         }

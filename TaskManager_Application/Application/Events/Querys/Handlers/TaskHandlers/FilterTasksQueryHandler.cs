@@ -20,7 +20,7 @@ namespace TaskManager_Application.Application.Events.Querys.Handlers.TaskHandler
         {
             var FilterTasks = await TaskRepository.Filter(request.TaskName, request.TaskPriority, request.TaskDataStart, request.TaskDataEnd, request.IsComplited, cancellationToken);
 
-            var PagedTasks = FilterTasks.Take((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
+            var PagedTasks = FilterTasks.Skip((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
 
             return Mapper.Map<ICollection<TaskDTO>>(PagedTasks);
         }

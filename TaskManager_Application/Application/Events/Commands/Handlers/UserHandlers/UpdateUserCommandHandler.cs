@@ -1,12 +1,10 @@
-﻿using AutoMapper;
-using FluentValidation;
+﻿using FluentValidation;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TaskManager_Application.Application.Common.DTOs;
 using TaskManager_Application.Application.Common.JWT.JWTService;
 using TaskManager_Application.Application.Events.Commands.Commands.UserCommands;
 using TaskManager_Domain.Domain.Entites;
@@ -14,19 +12,14 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Commands.Handlers.UserHandlers
 {
-    public class UpdateUserCommandHandler(IUserRepository UserRepository, IRefreshTokenRepository RefreshTokenRepository,IJwtService JwtService, IMapper Mapper, IValidator<UserDTO> Validator)
+    public class UpdateUserCommandHandler(IUserRepository UserRepository, IRefreshTokenRepository RefreshTokenRepository,IJwtService JwtService, IValidator<UpdateUserCommand> Validator)
         : IRequestHandler<UpdateUserCommand, object>
     {
         public async Task<object> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
             var user = await UserRepository.FindById(request.ID, cancellationToken) ?? throw new ValidationException("Пользователь не найден");
 
-            var dto = Mapper.Map<UserDTO>(user);
-
-            dto.FullName = request.FullName;
-            dto.Email = request.Email;
-
-            await Validator.ValidateAndThrowAsync(dto, cancellationToken);
+            await Validator.ValidateAndThrowAsync(request, cancellationToken);
 
             var AccesToken = await JwtService.GenerateToken(request.ID, user.Password, request.Role);
             var RefreshToken = await JwtService.GenerateRefreshToken();

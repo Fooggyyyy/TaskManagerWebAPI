@@ -10,6 +10,11 @@ using TaskManager_Application.Application.Common.JWT.JWTService;
 using TaskManager_Application.Application.Common.Mapping;
 using TaskManager_Application.Application.Common.Validations;
 using TaskManager_Application.Application.Events.Commands.Commands.UserCommands;
+using TaskManager_Application.Application.Events.Commands.Commands.TaskCommands;
+using TaskManager_Application.Application.Events.Commands.Commands.ProjectCommands;
+using TaskManager_Application.Application.Events.Commands.Commands.LayerCommands;
+using TaskManager_Application.Application.Events.Commands.Commands.CommentCommands;
+using TaskManager_Application.Application.Events.Commands.Commands.NotificationCommands;
 using TaskManager_Application.Application.Events.Querys.Handlers.CommentHandlers;
 using TaskManager_Domain.Domain.Entites;
 using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
@@ -85,6 +90,12 @@ builder.Services.AddScoped<IValidator<ProjectDTO>, ProjectValidator>();
 builder.Services.AddScoped<IValidator<TaskDTO>, TaskValidator>();
 builder.Services.AddScoped<IValidator<UserDTO>, UserValidator>();
 builder.Services.AddScoped<IValidator<ResetPasswordUserCommand>, PasswordValidator>();
+builder.Services.AddScoped<IValidator<UpdateTaskCommand>, UpdateTaskCommandValidator>();
+builder.Services.AddScoped<IValidator<UpdateProjectCommand>, UpdateProjectCommandValidator>();
+builder.Services.AddScoped<IValidator<UpdateLayerCommand>, UpdateLayerCommandValidator>();
+builder.Services.AddScoped<IValidator<UpdateCommentCommand>, UpdateCommentCommandValidator>();
+builder.Services.AddScoped<IValidator<UpdateUserCommand>, UpdateUserCommandValidator>();
+builder.Services.AddScoped<IValidator<UpdateNotificationCommand>, UpdateNotificationCommandValidator>();
 
 //MediatR
 builder.Services.AddMediatR(cfg =>  cfg.RegisterServicesFromAssemblies(typeof(GetAllCommentsQueryHandler).Assembly) );

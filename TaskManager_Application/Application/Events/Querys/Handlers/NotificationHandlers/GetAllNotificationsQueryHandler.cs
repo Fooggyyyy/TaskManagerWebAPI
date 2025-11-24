@@ -19,7 +19,7 @@ namespace TaskManager_Application.Application.Events.Querys.Handlers.Notificatio
         {
             var AllNotification = await NotificationRepository.GetAll(cancellationToken);
 
-            var PagedNotification = AllNotification.Take((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
+            var PagedNotification = AllNotification.Skip((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
 
             return Mapper.Map<ICollection<NotificationDTO>>(PagedNotification);
         }

@@ -19,7 +19,7 @@ namespace TaskManager_Application.Application.Events.Querys.Handlers.UserHandler
         {
             var AllUsers = await UserRepository.GetAll(cancellationToken);
 
-            var PagedUsers = AllUsers.Take((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
+            var PagedUsers = AllUsers.Skip((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
 
             return Mapper.Map<ICollection<UserDTO>>(PagedUsers);
         }

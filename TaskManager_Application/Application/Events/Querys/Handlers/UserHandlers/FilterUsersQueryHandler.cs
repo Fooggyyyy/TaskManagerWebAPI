@@ -20,7 +20,7 @@ namespace TaskManager_Application.Application.Events.Querys.Handlers.UserHandler
         {
             var FilterUsers = await UserRepository.Filter(request.FullName, request.Email, request.Role, cancellationToken);
 
-            var PagedUsers = FilterUsers.Take((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
+            var PagedUsers = FilterUsers.Skip((request.Page - 1) * request.PageSize).Take(request.PageSize).ToList();
 
             return Mapper.Map<ICollection<UserDTO>>(PagedUsers);
         }
