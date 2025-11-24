@@ -15,7 +15,14 @@ namespace TaskManager_Application.Application.Common.Mapping
         public TaskProfile() 
         {
             CreateMap<TaskManager_Domain.Domain.Entites.Task, TaskDTO>().ReverseMap();
-            CreateMap<AddTaskCommand, TaskDTO>();
+            CreateMap<AddTaskCommand, TaskDTO>()
+                .ForMember(dest => dest.LayerID, opt => opt.MapFrom(src => src.LayerId))
+                .ForMember(dest => dest.ProjectID, opt => opt.MapFrom(src => src.ProjectId))
+                .ForMember(dest => dest.UserID, opt => opt.MapFrom(src => src.UserId))
+                .ForMember(dest => dest.TaskName, opt => opt.MapFrom(src => src.TaskName))
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.TaskDescription))
+                .ForMember(dest => dest.DateStart, opt => opt.MapFrom(src => src.DataStart))
+                .ForMember(dest => dest.DateEnd, opt => opt.MapFrom(src => src.DataEnd));
             CreateMap<UpdateTaskCommand, TaskDTO>();
         }
     }

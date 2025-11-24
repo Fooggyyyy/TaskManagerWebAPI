@@ -14,17 +14,22 @@ using TaskManager_Infastructure.Infastructure.Repositories;
 
 namespace TaskManager_Application.Application.Events.Commands.Handlers.LayerHandlers
 {
-    public class AddLayerCommandHandler(ILayerRepository LayerRepository, IMapper Mapper, IValidator<LayerDTO> Validator)
+    public class AddLayerCommandHandler(ILayerRepository LayerRepository, IProjectRepository ProjectRepository, IMapper Mapper, IValidator<LayerDTO> Validator)
         : IRequestHandler<AddLayerCommand, Unit>
     {
         public async Task<Unit> Handle(AddLayerCommand request, CancellationToken cancellationToken)
         {
+            // Verify foreign key exists
+            var project = await ProjectRepository.FindById(request.ProjectID, cancellationToken);
+            if (project == null)
+                throw new ValidationException($"Проект с ID {request.ProjectID} не найден");
+
             var dto = Mapper.Map<LayerDTO>(request);
             await Validator.ValidateAndThrowAsync(dto, cancellationToken);
 
             var AllLayers = await LayerRepository.GetAll(cancellationToken);
 
-            var LayerName = AllLayers.Where(x => x.LayerName == request.LayerName && request.ProjectID == request.ProjectID).Select(y => y.LayerName).FirstOrDefault();
+            var LayerName = AllLayers.Where(x => x.LayerName == request.LayerName && x.ProjectID == request.ProjectID).Select(y => y.LayerName).FirstOrDefault();
             if (LayerName != null)
                 throw new ArgumentException("Не может быть два одинаковых слоя в одном проекте");
 

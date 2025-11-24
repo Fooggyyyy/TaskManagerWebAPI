@@ -16,7 +16,7 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Commands.Handlers.UserHandlers
 {
-    public class RegisterUserCommandHandler(IUserRepository UserRepository, IRefreshTokenRepository RefreshTokenRepository,  IMapper Mapper, IValidator<UserDTO> Validator, IJwtService JwtService, IHashPassword HashPassword)
+    public class RegisterUserCommandHandler(IUserRepository UserRepository, IProjectRepository ProjectRepository, IRefreshTokenRepository RefreshTokenRepository,  IMapper Mapper, IValidator<UserDTO> Validator, IJwtService JwtService, IHashPassword HashPassword)
         : IRequestHandler<RegisterUserCommand, object>
     {
         public async Task<object> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
@@ -27,6 +27,33 @@ namespace TaskManager_Application.Application.Events.Commands.Handlers.UserHandl
                 throw new ValidationException("Пользователь с такой почтой уже существует");
 
             var dto = Mapper.Map<UserDTO>(request);
+            // Set default ProjectID for registration if not provided
+            if (dto.ProjectID == 0)
+            {
+                // Try to find first project
+                var projects = await ProjectRepository.GetAll(cancellationToken);
+                if (projects.Any())
+                {
+                    dto.ProjectID = projects.First().ProjectID;
+                }
+                else
+                {
+                    // If no projects exist, create default project
+                    var defaultProject = new Project
+                    {
+                        ProjectName = "Default Project",
+                        Description = "Default project for new users",
+                        Status = Status.Active
+                    };
+                    await ProjectRepository.Add(defaultProject, cancellationToken);
+                    var allProjects = await ProjectRepository.GetAll(cancellationToken);
+                    dto.ProjectID = allProjects.First().ProjectID;
+                }
+            }
+            // Verify project exists
+            var project = await ProjectRepository.FindById(dto.ProjectID, cancellationToken);
+            if (project == null)
+                throw new ValidationException($"Проект с ID {dto.ProjectID} не найден");
             await Validator.ValidateAndThrowAsync(dto, cancellationToken);
 
             var Result = Mapper.Map<User>(dto);
@@ -40,7 +67,7 @@ namespace TaskManager_Application.Application.Events.Commands.Handlers.UserHandl
             var AccesToken = await JwtService.GenerateToken(UserID, request.Email, Role.Client);
             var RefreshToken = await JwtService.GenerateRefreshToken();
 
-            var DbRefreshToken = new RefreshToken(RefreshToken, UserID, DateTime.Now.AddDays(7), Result);
+            var DbRefreshToken = new RefreshToken(RefreshToken, UserID, DateTime.Now.AddDays(7));
             await RefreshTokenRepository.Add(DbRefreshToken, cancellationToken);
 
             return new { AccesToken, RefreshToken };

@@ -15,7 +15,7 @@ using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
 
 namespace TaskManager_Application.Application.Events.Commands.Handlers.UserHandlers
 {
-    public class AddUserCommandHandler(IUserRepository UserRepository, IRefreshTokenRepository RefreshTokenRepository, IMapper Mapper, IValidator<UserDTO> Validator, IHashPassword HashPassword, IJwtService JwtService)
+    public class AddUserCommandHandler(IUserRepository UserRepository, IProjectRepository ProjectRepository, IRefreshTokenRepository RefreshTokenRepository, IMapper Mapper, IValidator<UserDTO> Validator, IHashPassword HashPassword, IJwtService JwtService)
         : IRequestHandler<AddUserCommand, object>
     {
         public async Task<object> Handle(AddUserCommand request, CancellationToken cancellationToken)
@@ -24,6 +24,11 @@ namespace TaskManager_Application.Application.Events.Commands.Handlers.UserHandl
             var HasMail =  AllUsers.Where(x => x.Email == request.Email).Any();
             if (HasMail)
                 throw new ValidationException("Пользователь с такой почтой уже существует");
+
+            // Verify project exists
+            var project = await ProjectRepository.FindById(request.ProjectId, cancellationToken);
+            if (project == null)
+                throw new ValidationException($"Проект с ID {request.ProjectId} не найден");
 
             var dto = Mapper.Map<UserDTO>(request);
             await Validator.ValidateAndThrowAsync(dto, cancellationToken);
@@ -39,7 +44,7 @@ namespace TaskManager_Application.Application.Events.Commands.Handlers.UserHandl
             var AccesToken = await JwtService.GenerateToken(UserID, request.Email, request.Role);
             var RefreshToken = await JwtService.GenerateRefreshToken();
 
-            var DbRefreshToken = new RefreshToken(RefreshToken, UserID, DateTime.Now.AddDays(7), Result);
+            var DbRefreshToken = new RefreshToken(RefreshToken, UserID, DateTime.Now.AddDays(7));
             await RefreshTokenRepository.Add(DbRefreshToken, cancellationToken);
 
             return new { AccesToken, RefreshToken };

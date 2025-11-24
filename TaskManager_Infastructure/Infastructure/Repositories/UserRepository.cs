@@ -63,12 +63,16 @@ namespace TaskManager_Infastructure.Infastructure.Repositories
             var user = await dbcontext.Users.Where(x => x.UserID == ID && x.Password == OldPassword).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
 
             if(user != null)
+            {
                 user.Password = NewPassword;
+                dbcontext.Users.Update(user);
+                await dbcontext.SaveChangesAsync(cancellationToken);
+            }
         }
 
         public async System.Threading.Tasks.Task Update(int ID, string? FullName, string? Email, Role? Role, CancellationToken cancellationToken)
         {
-            var user = await dbcontext.Users.Where(x => x.UserID == ID).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
+            var user = await dbcontext.Users.Where(x => x.UserID == ID).FirstOrDefaultAsync(cancellationToken);
 
             if(user != null)
             {
@@ -79,6 +83,7 @@ namespace TaskManager_Infastructure.Infastructure.Repositories
                 if (Role != null)
                     user.Role = Role.Value;
 
+                dbcontext.Users.Update(user);
                 await dbcontext.SaveChangesAsync(cancellationToken);
             }
         }

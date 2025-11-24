@@ -20,7 +20,7 @@ namespace TaskManager_WebAPI.WebAPI.Controller
     public class TaskController(IMediator Mediator) : ControllerBase
     {
         [HttpGet("All")]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<ActionResult<ICollection<TaskDTO>>> GetAll(CancellationToken cancellationToken,
             [FromQuery] int Page = 1, [FromQuery] int PageSize = 10)
         {
@@ -30,7 +30,7 @@ namespace TaskManager_WebAPI.WebAPI.Controller
         }
 
         [HttpGet("GetById")]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<ActionResult<TaskDTO>> GetById(CancellationToken cancellationToken, [FromQuery] int Id = 0)
         {
             var result = await Mediator.Send(new FindTaskByIdQuery(Id), cancellationToken);
@@ -39,7 +39,7 @@ namespace TaskManager_WebAPI.WebAPI.Controller
         }
 
         [HttpGet("Filter")]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<ActionResult<ICollection<TaskDTO>>> GetFilter([FromQuery] FilterTaskByIdQuery query, CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(query, cancellationToken);
@@ -48,7 +48,7 @@ namespace TaskManager_WebAPI.WebAPI.Controller
         }
 
         [HttpDelete("DeleteAll")]
-        [AllowAnonymous]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<ActionResult> DeleteAll(CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(new DeleteAllTasksCommand(), cancellationToken);
@@ -57,7 +57,7 @@ namespace TaskManager_WebAPI.WebAPI.Controller
         }
 
         [HttpDelete("DeleteById")]
-        [AllowAnonymous]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<ActionResult> DeleteById(CancellationToken cancellationToken, [FromQuery] int Id = 0)
         {
             var result = await Mediator.Send(new DeleteTaskByIdCommand(Id), cancellationToken);
@@ -66,7 +66,7 @@ namespace TaskManager_WebAPI.WebAPI.Controller
         }
 
         [HttpPut("Update")]
-        [AllowAnonymous]
+        [Authorize(Roles = "Developer,ProjectManager,Admin")]
         public async Task<ActionResult> Update([FromBody] UpdateTaskCommand command, CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(command, cancellationToken);
@@ -75,7 +75,7 @@ namespace TaskManager_WebAPI.WebAPI.Controller
         }
 
         [HttpPost("Add")]
-        [AllowAnonymous]
+        [Authorize(Roles = "Developer,ProjectManager,Admin")]
         public async Task<ActionResult> Add([FromBody] AddTaskCommand command, CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(command, cancellationToken);

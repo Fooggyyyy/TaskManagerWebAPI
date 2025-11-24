@@ -15,7 +15,9 @@ namespace TaskManager_Application.Application.Common.Mapping
         public CommentProfile()
         {
             CreateMap<Comment, CommentDTO>().ReverseMap();
-            CreateMap<AddCommentCommand, CommentDTO>();
+            CreateMap<AddCommentCommand, CommentDTO>()
+                .ForMember(dest => dest.TaskID, opt => opt.MapFrom(src => src.TaskID))
+                .ForMember(dest => dest.UserID, opt => opt.MapFrom(src => src.UserID));
             CreateMap<UpdateCommentCommand, CommentDTO>();
         }
     }

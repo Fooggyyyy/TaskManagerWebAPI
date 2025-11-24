@@ -20,10 +20,10 @@ namespace TaskManager_Application.Application.Events.Commands.Handlers.UserHandl
         {
             var AllTokens = await RefreshTokenRepository.GetAll(cancellationToken);
 
-            var CurrentUserIDList = AllTokens.Where(x => x.Token == request.RefreshToken).Select(y => y.UserId).ToList();
+            var TokensToDelete = AllTokens.Where(x => x.Token == request.RefreshToken).ToList();
 
-            foreach(var id in CurrentUserIDList)
-                await RefreshTokenRepository.DeleteById(id, cancellationToken);
+            foreach(var token in TokensToDelete)
+                await RefreshTokenRepository.DeleteById(token.Id, cancellationToken);
             return Unit.Value;
         }
     }

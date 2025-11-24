@@ -15,7 +15,9 @@ namespace TaskManager_Application.Application.Common.Mapping
         public NotificationProfile() 
         {
             CreateMap<Notification, NotificationDTO>().ReverseMap();
-            CreateMap<AddNotificationCommand, NotificationDTO>();
+            CreateMap<AddNotificationCommand, NotificationDTO>()
+                .ForMember(dest => dest.TaskID, opt => opt.MapFrom(src => src.TaskId))
+                .ForMember(dest => dest.UserID, opt => opt.MapFrom(src => src.UserId));
             CreateMap<UpdateNotificationCommand, NotificationDTO>();
         }
     }

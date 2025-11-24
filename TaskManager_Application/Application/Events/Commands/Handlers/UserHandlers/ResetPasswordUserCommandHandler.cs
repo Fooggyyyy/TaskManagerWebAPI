@@ -29,10 +29,10 @@ namespace TaskManager_Application.Application.Events.Commands.Handlers.UserHandl
             if (UserInDB.Email == null)
                 throw new ValidationException("Такой User не найден");
 
-            var NewAccesToken = JwtService.GenerateToken(request.Id, UserInDB.Email, UserInDB.Role);
-            var RefreshToken = JwtService.GenerateRefreshToken();
+            var NewAccesToken = await JwtService.GenerateToken(request.Id, UserInDB.Email, UserInDB.Role);
+            var RefreshToken = await JwtService.GenerateRefreshToken();
 
-            var DbRefreshToken = new RefreshToken(RefreshToken.Result, request.Id, DateTime.Now.AddDays(7), UserInDB);
+            var DbRefreshToken = new RefreshToken(RefreshToken, request.Id, DateTime.Now.AddDays(7));
             await RefreshTokenRepository.Add(DbRefreshToken, cancellationToken);
 
             await UserRepository.ResetPassword(request.Id, request.OldPassword, request.NewPassword, cancellationToken);

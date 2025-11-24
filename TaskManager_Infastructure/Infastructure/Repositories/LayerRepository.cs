@@ -51,7 +51,7 @@ namespace TaskManager_Infastructure.Infastructure.Repositories
 
         public async System.Threading.Tasks.Task Update(int OldID, string LayerName, CancellationToken cancellationToken)
         {
-            Layer? layer = await dbcontext.Layers.Where(x => x.LayerID == OldID).AsNoTracking().FirstAsync(cancellationToken);
+            Layer? layer = await dbcontext.Layers.Where(x => x.LayerID == OldID).FirstAsync(cancellationToken);
 
             if(layer != null)
             {

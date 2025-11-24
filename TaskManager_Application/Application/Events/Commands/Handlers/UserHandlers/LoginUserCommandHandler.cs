@@ -29,7 +29,7 @@ namespace TaskManager_Application.Application.Events.Commands.Handlers.UserHandl
             var accessToken = await JwtService.GenerateToken(user.UserID, user.Email, user.Role);
             var refreshToken = await JwtService.GenerateRefreshToken();
 
-            var dbRefreshToken = new RefreshToken(refreshToken, user.UserID, DateTime.Now.AddDays(7), user);
+            var dbRefreshToken = new RefreshToken(refreshToken, user.UserID, DateTime.Now.AddDays(7));
             await RefreshTokenRepository.Add(dbRefreshToken, cancellationToken);
 
             return new { accessToken, refreshToken };

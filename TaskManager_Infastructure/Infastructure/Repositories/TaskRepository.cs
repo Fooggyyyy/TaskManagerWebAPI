@@ -78,7 +78,7 @@ namespace TaskManager_Infastructure.Infastructure.Repositories
 
         public async System.Threading.Tasks.Task Update(int OldID, string? TaskName, string? TaskDescription, Priority? Priority, CancellationToken cancellationToken)
         {
-            var task = await dbcontext.Tasks.Where(x => x.TaskID == OldID).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
+            var task = await dbcontext.Tasks.Where(x => x.TaskID == OldID).FirstOrDefaultAsync(cancellationToken);
 
             if (task != null)
             {

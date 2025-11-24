@@ -65,7 +65,7 @@ namespace TaskManager_Infastructure.Infastructure.Repositories
         public async System.Threading.Tasks.Task Update(int OldID, string? NotificationName, string? NotificationDescription, CancellationToken cancellationToken)
         {
             Notification? notification = await dbcontext.Notifications
-               .Where(x => x.NotificationID == OldID).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
+               .Where(x => x.NotificationID == OldID).FirstOrDefaultAsync(cancellationToken);
 
             if (notification != null)
             {

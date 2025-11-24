@@ -22,7 +22,15 @@ namespace TaskManager_Application.Application.Common.JWT.JWTService
         public Task<string> GenerateToken(int UserId, string? Email, Role role)
         {
             var jwtSettings = _configuration.GetSection("Jwt");
-            var key = Encoding.UTF8.GetBytes(jwtSettings.Key);
+            var keyString = jwtSettings["Key"];
+            
+            if (string.IsNullOrEmpty(keyString))
+                throw new InvalidOperationException("JWT Key is not configured. Please set 'Jwt:Key' in appsettings.json");
+            
+            if (keyString.Length < 32)
+                throw new InvalidOperationException($"JWT Key must be at least 32 characters long for HS256 algorithm. Current length: {keyString.Length}");
+            
+            var key = Encoding.UTF8.GetBytes(keyString);
             var issuer = jwtSettings["Issuer"];
             var audience = jwtSettings["Audience"];
             var expires = DateTime.UtcNow.AddMinutes(double.Parse(jwtSettings["ExpiresInMinutes"]!));

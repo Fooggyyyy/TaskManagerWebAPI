@@ -15,7 +15,9 @@ namespace TaskManager_Application.Application.Common.Mapping
         public UserProfile() 
         {
             CreateMap<User, UserDTO>().ReverseMap();
-            CreateMap<AddUserCommand,  UserDTO>();
+            CreateMap<AddUserCommand,  UserDTO>()
+                .ForMember(dest => dest.ProjectID, opt => opt.MapFrom(src => src.ProjectId));
+            CreateMap<RegisterUserCommand, UserDTO>();
         }
     }
 }

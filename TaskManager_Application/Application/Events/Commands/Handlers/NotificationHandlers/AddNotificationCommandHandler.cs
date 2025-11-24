@@ -14,11 +14,20 @@ using TaskManager_Infastructure.Infastructure.Repositories;
 
 namespace TaskManager_Application.Application.Events.Commands.Handlers.NotificationHandlers
 {
-    public class AddNotificationCommandHandler(INotificationRepository NotificationRepository, IMapper Mapper, IValidator<NotificationDTO> Validator)
+    public class AddNotificationCommandHandler(INotificationRepository NotificationRepository, ITaskRepository TaskRepository, IUserRepository UserRepository, IMapper Mapper, IValidator<NotificationDTO> Validator)
         : IRequestHandler<AddNotificationCommand, Unit>
     {
         public async Task<Unit> Handle(AddNotificationCommand request, CancellationToken cancellationToken)
         {
+            // Verify foreign keys exist
+            var task = await TaskRepository.FindById(request.TaskId, cancellationToken);
+            if (task == null)
+                throw new ValidationException($"Задача с ID {request.TaskId} не найдена");
+
+            var user = await UserRepository.FindById(request.UserId, cancellationToken);
+            if (user == null)
+                throw new ValidationException($"Пользователь с ID {request.UserId} не найден");
+
             var dto = Mapper.Map<NotificationDTO>(request);
             await Validator.ValidateAndThrowAsync(dto, cancellationToken);
 

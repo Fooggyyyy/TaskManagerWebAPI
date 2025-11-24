@@ -18,7 +18,7 @@ namespace TaskManager_WebAPI.WebAPI.Controller
     public class CommentController(IMediator Mediator) : ControllerBase
     {
         [HttpGet("All")]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<ActionResult<ICollection<CommentDTO>>> GetAll(CancellationToken cancellationToken, 
             [FromQuery] int Page = 1, [FromQuery] int PageSize = 10 )
         {
@@ -28,7 +28,7 @@ namespace TaskManager_WebAPI.WebAPI.Controller
         }
 
         [HttpGet("GetById")]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<ActionResult<CommentDTO>> GetById(CancellationToken cancellationToken, [FromQuery] int Id = 0)
         {
             var result = await Mediator.Send(new FindCommentByIdQuery(Id), cancellationToken);
@@ -37,7 +37,7 @@ namespace TaskManager_WebAPI.WebAPI.Controller
         }
 
         [HttpGet("Filter")]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<ActionResult<ICollection<CommentDTO>>> GetFilter([FromQuery] FilterCommentsQuery query, CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(query, cancellationToken);
@@ -46,7 +46,7 @@ namespace TaskManager_WebAPI.WebAPI.Controller
         }
 
         [HttpDelete("DeleteAll")]
-        [AllowAnonymous]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<ActionResult> DeleteAll(CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(new DeleteAllCommentsCommand(), cancellationToken);
@@ -55,7 +55,7 @@ namespace TaskManager_WebAPI.WebAPI.Controller
         }
 
         [HttpDelete("DeleteById")]
-        [AllowAnonymous]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<ActionResult> DeleteById(CancellationToken cancellationToken, [FromQuery] int Id = 0)
         {
             var result = await Mediator.Send(new DeleteCommentByIdCommand(Id), cancellationToken);
@@ -64,7 +64,7 @@ namespace TaskManager_WebAPI.WebAPI.Controller
         }
 
         [HttpPut("Update")]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<ActionResult> Update([FromBody] UpdateCommentCommand command, CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(command, cancellationToken);
@@ -73,7 +73,7 @@ namespace TaskManager_WebAPI.WebAPI.Controller
         }
 
         [HttpPost("Add")]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<ActionResult> Add([FromBody] AddCommentCommand command, CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(command, cancellationToken);

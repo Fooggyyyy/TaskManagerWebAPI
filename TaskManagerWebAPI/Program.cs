@@ -2,6 +2,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
 using TaskManager_Application.Application.Common.DTOs;
@@ -9,12 +10,12 @@ using TaskManager_Application.Application.Common.HashHelper;
 using TaskManager_Application.Application.Common.JWT.JWTService;
 using TaskManager_Application.Application.Common.Mapping;
 using TaskManager_Application.Application.Common.Validations;
-using TaskManager_Application.Application.Events.Commands.Commands.UserCommands;
-using TaskManager_Application.Application.Events.Commands.Commands.TaskCommands;
-using TaskManager_Application.Application.Events.Commands.Commands.ProjectCommands;
-using TaskManager_Application.Application.Events.Commands.Commands.LayerCommands;
 using TaskManager_Application.Application.Events.Commands.Commands.CommentCommands;
+using TaskManager_Application.Application.Events.Commands.Commands.LayerCommands;
 using TaskManager_Application.Application.Events.Commands.Commands.NotificationCommands;
+using TaskManager_Application.Application.Events.Commands.Commands.ProjectCommands;
+using TaskManager_Application.Application.Events.Commands.Commands.TaskCommands;
+using TaskManager_Application.Application.Events.Commands.Commands.UserCommands;
 using TaskManager_Application.Application.Events.Querys.Handlers.CommentHandlers;
 using TaskManager_Domain.Domain.Entites;
 using TaskManager_Domain.Domain.Intrefaces.ClassRepository;
@@ -24,8 +25,16 @@ using TaskManager_WebAPI.WebAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 var AuthBuilder = builder.Services.AddAuthorizationBuilder();
-var JwtSetting = builder.Configuration.GetSection("jwt");
-var JwtKey = Encoding.UTF8.GetBytes(JwtSetting.Key);
+var JwtSetting = builder.Configuration.GetSection("Jwt");
+var jwtKeyString = JwtSetting["Key"];
+
+if (string.IsNullOrEmpty(jwtKeyString))
+    throw new InvalidOperationException("JWT Key is not configured in appsettings.json. Please set 'Jwt:Key' in appsettings.json with at least 32 characters.");
+
+if (jwtKeyString.Length < 32)
+    throw new InvalidOperationException($"JWT Key must be at least 32 characters long for HS256 algorithm. Current length: {jwtKeyString.Length}. Please update 'Jwt:Key' in appsettings.json");
+
+var JwtKey = Encoding.UTF8.GetBytes(jwtKeyString);
 
 //Authentication
 builder.Services.AddAuthentication(options =>
@@ -109,7 +118,33 @@ builder.Services.AddEndpointsApiExplorer();
 
 //Swagger
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Description = "¬ведите ваш JWT токен"
+    });
+
+    c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+    {
+        {
+            new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+            {
+                Reference = new Microsoft.OpenApi.Models.OpenApiReference
+                {
+                    Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
 
 var app = builder.Build();
 

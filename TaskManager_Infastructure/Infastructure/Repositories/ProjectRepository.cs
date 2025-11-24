@@ -59,7 +59,7 @@ namespace TaskManager_Infastructure.Infastructure.Repositories
 
         public async System.Threading.Tasks.Task Update(int OldID, string? ProjectName, string? ProjectDescription, Status? status, CancellationToken cancellationToken)
         {
-            Project? project = await dbcontext.Projects.Where(x => x.ProjectID == OldID).AsNoTracking().FirstOrDefaultAsync(cancellationToken);
+            Project? project = await dbcontext.Projects.Where(x => x.ProjectID == OldID).FirstOrDefaultAsync(cancellationToken);
 
             if (project != null)
             {

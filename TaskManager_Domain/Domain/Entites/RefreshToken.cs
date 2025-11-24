@@ -17,17 +17,8 @@ namespace TaskManager_Domain.Domain.Entites
 
         public RefreshToken() { }
 
-        public RefreshToken(string? token, int userId, DateTime expiresOnUtc, User? user)
+        public RefreshToken( string? token, int userId, DateTime expiresOnUtc)
         {
-            Token = token;
-            UserId = userId;
-            ExpiresOnUtc = expiresOnUtc;
-            User = user;
-        }
-
-        public RefreshToken(int id, string? token, int userId, DateTime expiresOnUtc)
-        {
-            Id = id;
             Token = token;
             UserId = userId;
             ExpiresOnUtc = expiresOnUtc;

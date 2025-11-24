@@ -21,10 +21,10 @@ namespace TaskManager_Application.Application.Events.Commands.Handlers.UserHandl
 
             await Validator.ValidateAndThrowAsync(request, cancellationToken);
 
-            var AccesToken = await JwtService.GenerateToken(request.ID, user.Password, request.Role);
+            var AccesToken = await JwtService.GenerateToken(request.ID, user.Email, request.Role);
             var RefreshToken = await JwtService.GenerateRefreshToken();
 
-            var DbRefreshToken = new RefreshToken(RefreshToken, user.UserID, DateTime.Now.AddDays(7), user);
+            var DbRefreshToken = new RefreshToken(RefreshToken, user.UserID, DateTime.Now.AddDays(7));
             await RefreshTokenRepository.Add(DbRefreshToken, cancellationToken);
             await UserRepository.Update(request.ID, request.FullName, request.Email, request.Role, cancellationToken);
 
